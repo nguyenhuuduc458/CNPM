@@ -1,0 +1,144 @@
+@model MVCPage.ViewModel.DonThuocIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+<h5>Danh sách đơn thuốc </h5>
+<hr />
+<form method="get">
+    <p>
+        Tìm mã đơn thuốc
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập mã đơn thuốc....." />
+            <div class="input-group-append">
+               <input type="submit" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
+            </div>
+        </div>
+    </p>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+               Mã đơn thuốc
+            </th>
+            <th>
+               Phiếu khám
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DonThuocs) {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.MaDonThuoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaPhieuKham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TongTien) &nbsp;VND
+            </td>
+            <td>
+                <a asp-action="Index" asp-controller="DonThuoc" asp-route-MaDonThuoc="@item.MaDonThuoc"><button class="btn btn-warning">Chi tiết đơn </button></a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var disNext= !Model.DonThuocs.HasNext ? " visibility: hidden" : "";   
+    var disPre= !Model.DonThuocs.HasPrevious ? " visibility: hidden" : "";   
+}
+
+<ul class="pagination justify-content-end" style="margin:20px 0">
+    <li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disPre"
+        asp-route-pageIndex="@( Model.DonThuocs.PageIndex - 1 )"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
+    </li>           
+        @{     
+            for(int i=1; i <= Model.DonThuocs.TotalPages; i++)
+            {
+                //Nếu số tổng số trang >=8 thì sẽ hiện ... và sẽ hiện trang : i-2 , i-1 , i , i+1 ,i+2
+                if(Model.DonThuocs.TotalPages>=8 && @i>=Model.DonThuocs.PageIndex-2 && @i<=Model.DonThuocs.PageIndex+2)
+                {
+                    if(@i==Model.DonThuocs.PageIndex-2 && @i>1)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                    if(@i==Model.DonThuocs.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else 
+                    {
+                        <li class="page-item ">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                    if(@i==Model.DonThuocs.PageIndex+2 && @i<Model.DonThuocs.TotalPages)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                }
+                else if( Model.DonThuocs.TotalPages < 8 ) //Nếu số tổng số trang <8 thì sẽ hiện hết các trang
+                {
+                     if(@i==Model.DonThuocs.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                }         
+			}
+		}
+<li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disNext"
+        asp-route-pageIndex="@( Model.DonThuocs.PageIndex + 1 )"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Next </a>
+</li>  
+</ul>
+<div class="Card">
+<div><h5> Danh sách chi tiết đơn thuốc </h5></div>
+<hr />
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+            <th>Mã thuốc</th>
+            <th>Mã đơn thuốc</th>
+            <th>Số lượng</th>
+            <th>Cách dung</th>
+            <th>Thành tiền</th>
+        </thead>
+        <tbody>
+            @foreach(var item in Model.listChiTietDonThuoc){
+                <tr>
+                    <td>@item.MaThuoc</td>
+                    <td>@item.DonThuoc.MaDonThuoc</td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.CachDung</td>
+                    <td>@item.ThanhTien VND</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

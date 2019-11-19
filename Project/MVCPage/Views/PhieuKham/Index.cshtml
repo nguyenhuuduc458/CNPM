@@ -1,0 +1,134 @@
+
+@model MVCPage.ViewModel.PhieuKhamIndexVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h5>Danh sách phiếu khám</h5>
+<hr />
+<form method="get">
+    <p>
+        Tìm kiếm bệnh nhân: 
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập trieu chung..." />
+            <div class="input-group-append">
+               <input type="submit" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
+            </div>
+        </div>
+    </p>
+</form>
+ 
+<table class="table table-striped tabled-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+               Tên bác sỹ
+            </th>
+            <th>
+               Tên Bệnh nhân                
+            </th>
+            <th>
+                Chuẩn đoán  
+            </th>
+            <th>
+                Ngày Khám
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PhieuKhams) 
+{
+        <tr>
+            <td>
+               @item.TenBacSy
+            </td>
+            <td>
+                @item.TenBenhNhan
+            </td>
+            <td>
+                @item.ChuanDoan
+            </td>
+            <td>
+                @item.NgayKham
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Thông tin</a> |
+                <a asp-action="Create" asp-controller = "DonThuoc" asp-route-MaPhieuKham="@item.Id">Lập đơn thuốc</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var disNext= !Model.PhieuKhams.HasNext ? " visibility: hidden" : "";   
+    var disPre= !Model.PhieuKhams.HasPrevious ? " visibility: hidden" : "";   
+}
+
+<ul class="pagination justify-content-end" style="margin:20px 0">
+    <li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disPre"
+        asp-route-pageIndex="@( Model.PhieuKhams.PageIndex - 1 )"
+        asp-route-sort="@ViewBag.CurrentSort"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
+    </li>           
+        @{     
+            for(int i=1; i <= Model.PhieuKhams.TotalPages; i++)
+            {
+                //Nếu số tổng số trang >=8 thì sẽ hiện ... và sẽ hiện trang : i-2 , i-1 , i , i+1 ,i+2
+                if(Model.PhieuKhams.TotalPages>=8 && @i>=Model.PhieuKhams.PageIndex-2 && @i<=Model.PhieuKhams.PageIndex+2)
+                {
+                    if(@i==Model.PhieuKhams.PageIndex-2 && @i>1)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                    if(@i==Model.PhieuKhams.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else 
+                    {
+                        <li class="page-item ">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-sortOrder="@ViewBag.CurrentSort"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                    if(@i==Model.PhieuKhams.PageIndex+2 && @i<Model.PhieuKhams.TotalPages)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                }
+                else if( Model.PhieuKhams.TotalPages < 8 ) //Nếu số tổng số trang <8 thì sẽ hiện hết các trang
+                {
+                     if(@i==Model.PhieuKhams.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-sortOrder="@ViewBag.CurrentSort"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                }         
+			}
+		}
+<li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disNext"
+        asp-route-pageIndex="@( Model.PhieuKhams.PageIndex + 1 )"
+        asp-route-sort="@ViewBag.CurrentSort"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Next </a>
+</li>  
+</ul>

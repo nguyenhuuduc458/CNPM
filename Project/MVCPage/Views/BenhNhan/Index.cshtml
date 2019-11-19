@@ -1,0 +1,141 @@
+@using Microsoft.AspNetCore.Http;
+@model MVCPage.ViewModel.BenhNhanIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+<h5>Danh sách bệnh nhân </h5>
+<hr />
+<div class="row" style="margin-top:5px;margin-left:2px">
+    <a class="btn btn-outline-info" asp-action="Create">Thêm mới</a>
+</div>
+<form method="get">
+    <p>
+        Tìm Tên:
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập họ tên..." />
+            <div class="input-group-append">
+               <input type="submit" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
+            </div>
+        </div>
+    </p>
+</form>
+
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+               <a asp-action="index" asp-route-sortOrder="@ViewData["NameSortParam"]" asp-route-CurrentFilter="@ViewData["CurrentFilter"]"> Họ Tên</a>
+            </th>
+            <th>
+               Giới tính
+            </th>
+            <th>
+               <a asp-action="index" asp-route-sortOrder="@ViewData["DateSortParam"]" asp-route-CurrentFilter="@ViewData["CurrentFilter"]"> Ngày sinh</a>  
+            </th>
+            <th>
+                Địa chỉ 
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach ( var item in Model.BenhNhans) 
+{
+        <tr>
+            <td>
+                @item.HoTen
+            </td>
+            <td>
+                @item.GioiTinh
+            </td>
+            <td>
+                @item.NgaySinh
+            </td>
+            <td>
+                @item.DiaChi
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaBenhNhan">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.MaBenhNhan">Chi Tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaBenhNhan">Xóa</a> |        
+                @{
+                    if (@Context.Session.GetString("Role").Equals("2")){
+                    <a asp-action="Create" asp-controller="PhieuKham"  asp-route-id="@item.MaBenhNhan">Lập phiếu Khám </a>
+                    }
+                }            
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var disNext= !Model.BenhNhans.HasNext ? " visibility: hidden" : "";   
+    var disPre= !Model.BenhNhans.HasPrevious ? " visibility: hidden" : "";   
+}
+
+<ul class="pagination justify-content-end" style="margin:20px 0">
+    <li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disPre"
+        asp-route-pageIndex="@( Model.BenhNhans.PageIndex - 1 )"
+        asp-route-sort="@ViewBag.CurrentSort"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
+    </li>           
+        @{     
+            for(int i=1; i <= Model.BenhNhans.TotalPages; i++)
+            {
+                //Nếu số tổng số trang >=8 thì sẽ hiện ... và sẽ hiện trang : i-2 , i-1 , i , i+1 ,i+2
+                if(Model.BenhNhans.TotalPages>=8 && @i>=Model.BenhNhans.PageIndex-2 && @i<=Model.BenhNhans.PageIndex+2)
+                {
+                    if(@i==Model.BenhNhans.PageIndex-2 && @i>1)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                    if(@i==Model.BenhNhans.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else 
+                    {
+                        <li class="page-item ">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-sortOrder="@ViewBag.CurrentSort"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                    if(@i==Model.BenhNhans.PageIndex+2 && @i<Model.BenhNhans.TotalPages)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                }
+                else if( Model.BenhNhans.TotalPages < 8 ) //Nếu số tổng số trang <8 thì sẽ hiện hết các trang
+                {
+                     if(@i==Model.BenhNhans.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-sortOrder="@ViewBag.CurrentSort"
+                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                        </li>
+                    }
+                }         
+			}
+		}
+<li class="page-item">
+        <a asp-action="Index"  class="page-link" style="@disNext"
+        asp-route-pageIndex="@( Model.BenhNhans.PageIndex + 1 )"
+        asp-route-sort="@ViewBag.CurrentSort"
+        asp-route-currentFilter="@ViewBag.CurrentFilter"> Next </a>
+</li>  
+</ul>
