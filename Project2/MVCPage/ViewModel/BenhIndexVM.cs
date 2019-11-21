@@ -1,9 +1,10 @@
+using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 
 namespace MVCPage.ViewModel
 {
     public class BenhIndexVM
     {
-        public PaginatedList<Benh> Benhs { get; set; }
+        public PaginatedList<SaveBenhDTO> Benhs { get; set; }
     }
 }

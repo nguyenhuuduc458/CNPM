@@ -15,7 +15,8 @@ namespace ApplicationCore.Services
     public class DonThuocService : IDonThuocService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public DonThuocService(IUnitOfWork unitOfWork){
+        public DonThuocService(IUnitOfWork unitOfWork)
+        {
             _unitOfWork = unitOfWork;
         }
 
@@ -48,7 +49,7 @@ namespace ApplicationCore.Services
 
             if (!String.IsNullOrEmpty(MaDonThuoc.ToString()))
             {
-                chitiet = ct => ct.DonThuoc.MaDonThuoc == MaDonThuoc;
+                chitiet = ct => ct.MaDonThuoc == MaDonThuoc;
             }
             var chiTietDonThuoc = _unitOfWork.ChiTietDonThuocs.Find(chitiet);
             return chiTietDonThuoc;
@@ -86,7 +87,8 @@ namespace ApplicationCore.Services
                 TongTien = TinhTongTien(ttdt)
             };
             _unitOfWork.DonThuocs.Add(dt);
-            // them chi tiet don thuoc vao list tam 
+            _unitOfWork.Complete();
+            int MaDonThuoc = _unitOfWork.DonThuocs.GetMaDonThuoc(MaPhieuKham);
             foreach (var item in ttdt)
             {
                 ChiTietDonThuoc ct = new ChiTietDonThuoc
@@ -95,24 +97,23 @@ namespace ApplicationCore.Services
                     CachDung = item.CachDung,
                     SoLuong = item.SoLuong,
                     ThanhTien = item.ThanhTien,
+                    MaDonThuoc = MaDonThuoc
                 };
+                _unitOfWork.Thuocs.CapNhapSoLuongThuoc(item.MaThuoc,item.SoLuong);
                 ctdt.Add(ct);
             }
-            // luu chi tiet vao csdl 
-            foreach (var details in ctdt)
-            {
-                details.DonThuoc = dt;
-                _unitOfWork.ChiTietDonThuocs.Add(details);
-            }
+             _unitOfWork.ChiTietDonThuocs.AddRange(ctdt);
             _unitOfWork.Complete();
         }
-        
+
         public double TinhTongTien(IEnumerable<ThongTinDonThuoc> ttdt)
         {
             double? tongtien = 0;
-            foreach (var item in ttdt)
-            {
-                tongtien += item.ThanhTien;
+            if(ttdt!=null){
+                foreach (var item in ttdt)
+                {
+                    tongtien += item.ThanhTien;
+                }
             }
             return tongtien.Value;
         }

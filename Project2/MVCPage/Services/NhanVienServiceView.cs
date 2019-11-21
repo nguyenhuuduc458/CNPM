@@ -17,10 +17,11 @@ namespace MVCPage.Services {
         }
         
         public NhanVienIndexVM GetNhanVienIndexVM (string sortOrder, string searchString, int pageIndex) {
-            var nhanvien = _service.GetNhanViens(sortOrder, searchString);
+            int count;
+            var nhanvien = _service.GetNhanViens(sortOrder, searchString,pageIndex, pageSize, out count);
             //paging
             return new NhanVienIndexVM {
-                NhanViens = PaginatedList<SaveNhanVienDTO>.Create (nhanvien, pageIndex, pageSize)
+                NhanViens = new PaginatedList<SaveNhanVienDTO>(nhanvien, pageIndex, pageSize,count)
             };
         }
     }

@@ -10,6 +10,7 @@ using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Interfaces.IServices;
 using AutoMapper;
+using ApplicationCore.Specifications;
 
 namespace ApplicationCore.Services
 {
@@ -26,7 +27,46 @@ namespace ApplicationCore.Services
         public void Create(SaveNhanVienDTO nhanvien)
         {
             var nv = _mapper.Map<SaveNhanVienDTO, NhanVien>(nhanvien);
-            _unitOfWork.NhanViens.Add(nv);
+            MD5 md5hash = MD5.Create();
+            if(nv.MaVaiTro == 1){
+                NhanVien nv2 = new NhanVien
+                {
+                    HoTen = nv.HoTen,
+                    NgaySinh = nv.NgaySinh,
+                    DiaChi = nv.DiaChi,
+                    MaVaiTro = nv.MaVaiTro,
+                    GioiTinh = nv.GioiTinh,
+                    TenDangNhap = "Admin" + getMaTaiKhoan(),
+                    MatKhau = GetMd5hash(md5hash, "123")
+                };
+                _unitOfWork.NhanViens.Add(nv2);
+
+            }else if(nv.MaVaiTro == 2){
+                NhanVien nv2 = new NhanVien
+                {
+                    HoTen = nv.HoTen,
+                    NgaySinh = nv.NgaySinh,
+                    DiaChi = nv.DiaChi,
+                    MaVaiTro = nv.MaVaiTro,
+                    GioiTinh = nv.GioiTinh,
+                    TenDangNhap = "bacsi" + getMaTaiKhoan(),
+                    MatKhau = GetMd5hash(md5hash, "123")
+                };
+                _unitOfWork.NhanViens.Add(nv2);
+
+            }else{
+                NhanVien nv2 = new NhanVien
+                {
+                    HoTen = nv.HoTen,
+                    NgaySinh = nv.NgaySinh,
+                    DiaChi = nv.DiaChi,
+                    MaVaiTro = nv.MaVaiTro,
+                    GioiTinh = nv.GioiTinh,
+                    TenDangNhap = "nhanvien" + getMaTaiKhoan(),
+                    MatKhau = GetMd5hash(md5hash, "123")
+                };
+                _unitOfWork.NhanViens.Add(nv2);
+            }
             _unitOfWork.Complete();
         }
 
@@ -66,15 +106,13 @@ namespace ApplicationCore.Services
             return _mapper.Map<NhanVien, SaveNhanVienDTO>(nhanvien);
         }
 
-        public IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString)
+        public IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
         {
-            Expression<Func<NhanVien, bool>> predicate = m => true;
-            //search
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                predicate = m => m.HoTen.ToLower().Contains(searchString.ToLower());
-            }
-            var NhanVien = _unitOfWork.NhanViens.Find(predicate);
+            NhanVienSpecification nhanVienFilterPaging = new NhanVienSpecification(searchString, pageIndex, pageSize);
+            NhanVienSpecification nhanVienFilter = new NhanVienSpecification(searchString);
+             
+            var NhanVien = _unitOfWork.NhanViens.FindSpec(nhanVienFilterPaging);
+            count = _unitOfWork.NhanViens.Count(nhanVienFilter);
             //sort 
             switch (sortOrder)
             {
@@ -103,10 +141,23 @@ namespace ApplicationCore.Services
 
         public bool Login(string username, string password)
         {
-            string usernamesql = _unitOfWork.NhanViens.GetTenDangNhap(username);
-            string passwordsql = _unitOfWork.NhanViens.GetMatkhau(username);
-            string tennhanvien = _unitOfWork.NhanViens.GetTenNhanVien(username);
-            int role = _unitOfWork.NhanViens.GetVaiTro(username);
+            // mã hóa password trước khi tìm kiếm 
+            MD5 md5 = MD5.Create();
+            var hasPassword = GetMd5hash(md5, password);
+
+            FindNhanVienSpecification nhanVienSpecification = new FindNhanVienSpecification(username,hasPassword);
+            var nhanVien = _unitOfWork.NhanViens.FindSpec(nhanVienSpecification).FirstOrDefault();
+            
+            string usernamesql;
+            string passwordsql;
+            if(nhanVien == null){
+                return false;
+            }else{
+                usernamesql = nhanVien.TenDangNhap;
+                passwordsql = nhanVien.MatKhau;
+            }
+               
+              
             using (MD5 md5hash = MD5.Create())
             {
                 if (VerifyMd5Hash(md5hash, password, passwordsql) && usernamesql == username)
@@ -140,14 +191,42 @@ namespace ApplicationCore.Services
             return false;
         }
 
-        public List<string> CreateSession(string username)
-        {
+        public List<string> CreateSession(string username,string password)
+        {   
+            // mã hóa password trước khi tìm kiếm
+            MD5 md5hash = MD5.Create();
+            var hasPassword = GetMd5hash(md5hash, password); 
+
             List<string> listSession = new List<string>();
-            var tennhanvien = _unitOfWork.NhanViens.GetTenNhanVien(username);
-            var role = _unitOfWork.NhanViens.GetVaiTro(username);
+
+            FindNhanVienSpecification nhanVienSpecification = new FindNhanVienSpecification(username, hasPassword);
+            var nhanVien = _unitOfWork.NhanViens.FindSpec(nhanVienSpecification).FirstOrDefault();
+
+            string tennhanvien = nhanVien.HoTen;
+            int role           = nhanVien.MaVaiTro;
+            int manhanvien     = nhanVien.MaNhanVien;
+            
             listSession.Add(tennhanvien);
             listSession.Add(role.ToString());
+            listSession.Add(manhanvien.ToString());
             return listSession;
         }
+        // tao tên đăng nhập ma dinh cho tài khoản
+        public int getMaTaiKhoan(){
+            
+            var ListNhanVien = _unitOfWork.NhanViens.GetAll();
+
+            var nhanvien = ListNhanVien.ElementAtOrDefault(0);
+
+            var max = nhanvien.MaNhanVien;
+
+            foreach(var nv in ListNhanVien){
+                if(nv.MaNhanVien >= max){
+                    max = nv.MaNhanVien;
+                }
+            }
+            return max;
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 
 @model MVCPage.ViewModel.NhanVienIndexVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách nhân viên ";
 }
 <h5>Danh sách nhân viên</h5>
 <hr />
@@ -49,15 +49,17 @@
                 @item.GioiTinh
             </td>
             <td>
-                @item.NgaySinh
+                @{
+                    var NgaySinh = String.Format("{0:dd-MM-yyyy}",@item.NgaySinh);
+                }
+                @NgaySinh
             </td>
             <td>
                 @item.DiaChi
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MaNhanVien">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MaNhanVien">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaNhanVien">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MaNhanVien">Sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.MaNhanVien">Chi tiết</a>
             </td>
         </tr>
 }

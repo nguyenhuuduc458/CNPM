@@ -7,6 +7,8 @@ namespace ApplicationCore.Interfaces.IRepositories
 {
     public interface IPhieuKhamRepository : IRepository<PhieuKham>
     {
-        IEnumerable<PhieuKhamMD> GetTablePhieuKham(IEnumerable<PhieuKham> phieuKhams);
+        IEnumerable<PhieuKhamMD> GetTablePhieuKham(IEnumerable<PhieuKham> phieuKhams, int MaNhanVien);
+        IEnumerable<int> BCBenhNhan(int startMonth, int endMonth, int year);
+        IEnumerable<BaoCaoDoanhThuMD> BCDoanhThu(int startMonth, int endMonth, int year);
     }
 }

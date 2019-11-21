@@ -11,7 +11,7 @@ namespace MVCPage
         public int PageIndex { get; set; }
         public int TotalPages { get; set; }
         
-        public PaginatedList(IEnumerable<T> item, int count, int pageIndex, int pageSize)
+        public PaginatedList(IEnumerable<T> item, int pageIndex, int pageSize, int count)
         {
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
@@ -31,7 +31,7 @@ namespace MVCPage
             var item =  source.Skip((pageIndex - 1) * pageSize)
                               .Take(pageSize)
                               .ToList();
-            return new PaginatedList<T>(item, count, pageIndex, pageSize);
+            return new PaginatedList<T>(item, pageIndex, pageSize,count);
         }
     }
 }

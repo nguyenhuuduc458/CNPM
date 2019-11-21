@@ -190,7 +190,7 @@ namespace Infrastructure.Persistence.Repositories {
                     MaBenhNhan = 2,
                     MaNhanVien = 2,
                     TrieuChung = "Viêm mũi",
-                    NgayKham = DateTime.Parse("2019-8-10"),
+                    NgayKham = DateTime.Parse("8-10-2019"),
                     TrangThai="Chưa kê toa"
                 }
             );

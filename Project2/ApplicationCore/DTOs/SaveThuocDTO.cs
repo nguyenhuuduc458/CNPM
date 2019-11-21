@@ -29,7 +29,7 @@ namespace ApplicationCore.DTOs
         public string DonVi { get; set; }
         [DisplayName("Đơn giá")]
         [Required]
-        public Nullable<double> DonGia { get; set; }
+        public double DonGia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaveChiTietDonThuocDTO> ChiTietDonThuocs { get; set; }

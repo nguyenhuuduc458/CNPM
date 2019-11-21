@@ -19,11 +19,13 @@
                              <label asp-for="thongTinDonThuoc.TenThuoc" class="control-label"></label>
                             <input asp-for="@Model.thongTinDonThuoc.TenThuoc" class="form-control" required=""/>
                             <span asp-validation-for="thongTinDonThuoc.TenThuoc" class="text-danger"></span>
+                            <i style="color:red">@ViewData["TenThuocSai"]</i>
                         </div>
                         <div class="form-group">
                              <label asp-for="thongTinDonThuoc.SoLuong" class="control-label"></label>
                             <input asp-for="@Model.thongTinDonThuoc.SoLuong" class="form-control" min="1" required=""/>
                             <span asp-validation-for="thongTinDonThuoc.SoLuong" class="text-danger"></span>
+                            <i style="color:red">@ViewData["HetThuoc"]</i>
                         </div>
                         <div class="form-group">
                              <label asp-for="thongTinDonThuoc.CachDung" class="control-label"></label>

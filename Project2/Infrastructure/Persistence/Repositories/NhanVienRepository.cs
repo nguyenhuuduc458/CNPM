@@ -16,27 +16,6 @@ namespace Infrastructure.Persistence.Repositories {
         public IEnumerable<string> GetVaiTro () {
             return QuanLyPhongMach.VaiTros.Select (m => m.TenVaiTro).Distinct ().ToList ();;
         }
-
-        public string GetTenDangNhap(string username)
-        {
-            return QuanLyPhongMach.NhanViens.Where(u => u.TenDangNhap.Equals(username)).Select(u => u.TenDangNhap).FirstOrDefault();
-        }
-
-        public string GetMatkhau(string username)
-        {
-            return QuanLyPhongMach.NhanViens.Where(u => u.TenDangNhap.Equals(username)).Select(u => u.MatKhau).FirstOrDefault();
-        }
-
-        public string GetTenNhanVien(string username)
-        {
-            return QuanLyPhongMach.NhanViens.Where(u => u.TenDangNhap.Equals(username)).Select(u => u.HoTen).FirstOrDefault();
-        }
-
-        public int GetVaiTro(string username)
-        {
-            return QuanLyPhongMach.NhanViens.Where(u => u.TenDangNhap.Equals(username)).Select(u => u.MaVaiTro).FirstOrDefault();
-        }
-
         protected QuanLyPhongMach QuanLyPhongMach {
             get { return Context as QuanLyPhongMach; }
         }

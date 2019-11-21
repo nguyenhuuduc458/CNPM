@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,20 @@ namespace Infrastructure.Persistence.Repositories {
 
         public void Update (T Entity) {
             Context.Set<T>().Update(Entity);
+        }
+
+        public IEnumerable<T> FindSpec(ISpecification<T> spec)
+        {
+            return ApplySpecification(spec).ToList();
+        }
+
+        public int Count(ISpecification<T> spec)
+        {
+            return ApplySpecification(spec).Count();
+        }
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec){
+            var query = Context.Set<T>().AsQueryable();
+            return SpecificationEvaluator<T>.GetQuery(query, spec);
         }
     }
 }

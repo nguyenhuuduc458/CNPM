@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces.IServices;
 using ApplicationCore.Models;
+using AutoMapper;
 using MVCPage.ViewModel;
 
 namespace MVCPage.Services
@@ -15,22 +17,28 @@ namespace MVCPage.Services
         private readonly INhanVienService _NVService;
         private readonly IBenhNhanService _BNService;
         private readonly IBenhService _BService;
+        private IMapper _mapper;
         private int pageSize = 3;
-        public PhieuKhamServiceView (IPhieuKhamService service, INhanVienService NVService,IBenhNhanService BNService,IBenhService BService){
+        public PhieuKhamServiceView (IPhieuKhamService service, INhanVienService NVService,IBenhNhanService BNService,IBenhService BService,IMapper mapper){
             _service = service;
             _NVService = NVService;
             _BNService = BNService;
             _BService = BService;
+            _mapper = mapper;
         }
 
         public PhieuKhamCreateVM GetPhieuKhamCreateVM(int MaBenhNhan, int MaNhanVien)
         {
+            var bn = _BNService.GetBenhNhan(MaBenhNhan);
+            var nv = _NVService.GetNhanVien(MaNhanVien);
             PhieuKhamCreateVM vm = new PhieuKhamCreateVM
             {
-                PhieuKhams = new PhieuKham
+                PhieuKhams = new PhieuKhamEditMD
                 {
                     MaBenhNhan = MaBenhNhan,
                     MaNhanVien = MaNhanVien,
+                    TenBacSy = nv.HoTen,
+                    TenBenhNhan = bn.HoTen,
                     NgayKham = _service.GetNgayKham()
                 },
 
@@ -39,9 +47,9 @@ namespace MVCPage.Services
             return vm;
         }
 
-        public PhieuKhamIndexVM GetPhieuKhamIndexVM(string searchString, int pageIndex)
+        public PhieuKhamIndexVM GetPhieuKhamIndexVM(string searchString, int pageIndex, int MaNhanVien)
         {
-            var PKModel = _service.GetPhieuKhams(searchString);
+            var PKModel = _service.GetPhieuKhams(searchString, MaNhanVien);
             return new PhieuKhamIndexVM
             {
                 PhieuKhams = PaginatedList<PhieuKhamMD>.Create(PKModel.OrderByDescending(m => m.NgayKham) , pageIndex, pageSize)

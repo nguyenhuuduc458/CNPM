@@ -27,8 +27,9 @@ namespace MVCPage.Controllers {
         public IActionResult Index (string sortOrder, string CurrentFilter, int pageIndex = 1) {
            if (HttpContext.Session.GetString ("Username") != null && HttpContext.Session.GetString ("Role") == "2") {
             ViewData["CurrentFilter"] = CurrentFilter;
-            PhieuKhamIndexVM indexNV = _serviceView.GetPhieuKhamIndexVM (CurrentFilter, pageIndex);
-            return View (indexNV);
+                int  MaNhanVien = Convert.ToInt32(HttpContext.Session.GetString("MaNhanVien"));
+                PhieuKhamIndexVM indexNV = _serviceView.GetPhieuKhamIndexVM (CurrentFilter, pageIndex,MaNhanVien);
+             return View (indexNV);
             }else{
              return View("../Account/Index");
             }
@@ -37,9 +38,6 @@ namespace MVCPage.Controllers {
         public IActionResult Create(int id)
         {
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role") == "2"){
-                ViewData["MaBenhNhan"] = id;
-                ViewData["MaBacSy"] = HttpContext.Session.GetString("MaNhanVien");
-                ViewData["TenBacSy"] = HttpContext.Session.GetString("TenNhanVien");
                 int MaNhanVien = Convert.ToInt32(HttpContext.Session.GetString("MaNhanVien"));
                 PhieuKhamCreateVM vm = _serviceView.GetPhieuKhamCreateVM(id,MaNhanVien);
                 return View(vm);
@@ -57,7 +55,7 @@ namespace MVCPage.Controllers {
                     MaNhanVien = vm.PhieuKhams.MaNhanVien,
                     MaBenhNhan = vm.PhieuKhams.MaBenhNhan,
                     TrieuChung = vm.PhieuKhams.TrieuChung,
-                    NgayKham = vm.PhieuKhams.NgayKham,
+                    NgayKham = DateTime.Parse(String.Format("{0:yyyy-MM-dd}",vm.PhieuKhams.NgayKham)),
                     TrangThai = "Chưa kê toa"
                 };
                 var savePK = _mapper.Map<PhieuKham, SavePhieuKhamDTO>(pk);

@@ -17,7 +17,6 @@ namespace ApplicationCore.Models
       public string TenThuoc{ get; set; }
       [DisplayName("Số lượng")]
       [Required]
-      [RegularExpression(@"^[0-9]{1,3}$")]
       public int SoLuong{ get; set; }
       [DisplayName("Cách dùng")]
       [Required]

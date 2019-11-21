@@ -28,7 +28,6 @@ C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\net
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\PhieuKham\Edit.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\PhieuKham\Index.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_MainMenu.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Thuoc\Index.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
@@ -172,3 +171,11 @@ C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\net
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Thuoc\Delete.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Thuoc\Details.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCpage\obj\Debug\netcoreapp3.0\Razor\Views\DonThuoc\Details.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BSMenu.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_NVMenu.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_QTVMenu.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\BaoCao\Index.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Index.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Create.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Details.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Edit.cshtml.g.cs

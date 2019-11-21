@@ -10,16 +10,17 @@ using MVCPage.ViewModel;
 namespace MVCPage.Services {
     public class BenhNhanServiceView : IBenhNhanServiceView {
         private readonly IBenhNhanService _service;
+        private int pageSize = 3;
         public BenhNhanServiceView (IBenhNhanService service) {
             _service = service;
         }
         public BenhNhanIndexVM GetBenhNhanIndexVM (string sortOrder, string searchString, int pageIndex) {
             //paging
-            var benhNhan = _service.GetBenhNhans(sortOrder, searchString);
-            int pageSize = 3;
+            int count;
+            var benhNhan = _service.GetBenhNhans(sortOrder, searchString,pageIndex,pageSize,out count);
             return new BenhNhanIndexVM
             {
-                BenhNhans = PaginatedList<SaveBenhNhanDTO>.Create(benhNhan, pageIndex, pageSize)
+                BenhNhans = new  PaginatedList<SaveBenhNhanDTO>(benhNhan, pageIndex, pageSize,count)
             };
         }
     }

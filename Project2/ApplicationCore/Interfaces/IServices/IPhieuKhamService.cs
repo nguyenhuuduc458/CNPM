@@ -7,7 +7,7 @@ using ApplicationCore.Models;
 namespace ApplicationCore.Interfaces.IServices{
     public interface IPhieuKhamService{
         SavePhieuKhamDTO GetPhieuKham(int id);
-        IEnumerable<PhieuKhamMD> GetPhieuKhams(string searchString);
+        IEnumerable<PhieuKhamMD> GetPhieuKhams(string searchString, int MaNhanVien);
         void Create(SavePhieuKhamDTO phieuKham);
         void Edit(SavePhieuKhamDTO phieuKham);
         DateTime GetNgayKham();

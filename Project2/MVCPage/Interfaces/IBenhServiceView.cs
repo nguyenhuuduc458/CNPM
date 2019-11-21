@@ -4,11 +4,9 @@ using MVCPage.ViewModel;
 
 namespace MVCPage.Services
 {
-    public interface IBenhServiceVIew
+    public interface IBenhServiceView
     {
-        BenhIndexVM GetBenhIndexVM(string sortOrder, string searchString, int pageIndex);
-        void Delete(int id);
-        void Create(Benh benh);
-        void Edit(Benh benh);
+        BenhIndexVM GetBenhIndexVM( string searchString, string sortOrder, int pageIndex);
+        
     }
 }

@@ -54,7 +54,7 @@ namespace ApplicationCore.Services
             return _mapper.Map<PhieuKham, SavePhieuKhamDTO>(phieuKham);
         }
 
-        public IEnumerable<PhieuKhamMD> GetPhieuKhams(string searchString)
+        public IEnumerable<PhieuKhamMD> GetPhieuKhams(string searchString, int MaNhanVien)
         {
             Expression<Func<PhieuKham, bool>> predicate = m => true;
             //search
@@ -63,7 +63,7 @@ namespace ApplicationCore.Services
                 predicate = m => m.TrieuChung.ToLower().Contains(searchString.ToLower());
             }
             var phieuKham = _unitOfWork.PhieuKhams.Find(predicate);
-            var tblPhieuKham = _unitOfWork.PhieuKhams.GetTablePhieuKham(phieuKham);
+            var tblPhieuKham = _unitOfWork.PhieuKhams.GetTablePhieuKham(phieuKham,MaNhanVien);
             return tblPhieuKham.ToList();
         }
     }

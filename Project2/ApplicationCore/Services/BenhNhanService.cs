@@ -6,6 +6,7 @@ using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Interfaces.IServices;
+using ApplicationCore.Specifications;
 using AutoMapper;
 
 namespace ApplicationCore.Services{
@@ -46,15 +47,15 @@ namespace ApplicationCore.Services{
             return _mapper.Map<BenhNhan, SaveBenhNhanDTO>(bn);
         }
 
-        public IEnumerable<SaveBenhNhanDTO> GetBenhNhans(string sortOrder, string searchString)
+        public IEnumerable<SaveBenhNhanDTO> GetBenhNhans(string sortOrder, string searchString, int pageIndex,int pageSize, out int count)
         {
-            Expression<Func<BenhNhan, bool>> predicate = m => true;
-            //search
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                predicate = m => m.HoTen.ToLower().Contains(searchString.ToLower());
-            }
-            var benhNhan = _unitOfwork.BenhNhans.Find(predicate);
+            
+            BenhNhanSpecification benhNhanFilterPaging = new BenhNhanSpecification(searchString,pageIndex,pageSize);
+            BenhNhanSpecification benhNhanFilter = new BenhNhanSpecification(searchString);
+            
+            var benhNhan = _unitOfwork.BenhNhans.FindSpec(benhNhanFilterPaging);
+            
+            count = _unitOfwork.BenhNhans.Count(benhNhanFilter);
             //sort 
             switch (sortOrder)
             {

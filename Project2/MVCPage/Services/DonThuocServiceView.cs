@@ -81,6 +81,29 @@ namespace MVCPage.Services
             _service.CapNhatTrangThaiPhieuKham(MaPhieuKham);
         }
 
+        public bool KiemTraSoLuongTonKho(string tenthuoc, int SoLuongkeToa)
+        {
+            var thuoc = _service.GetThuocCondition(tenthuoc.ToLower());
+            if(thuoc == null){
+                return false;
+            }
+            var sl = thuoc.SoLuong;
+            if(sl >= SoLuongkeToa){
+                return true;
+            }
+            return false;
+        }
 
+        public bool KiemTraThuocExist(string TenThuoc)
+        {
+            var listthuoc = _service.GetAllListThuoc();
+            foreach(Thuoc item in listthuoc){
+                if(item.TenThuoc.ToLower().Equals(TenThuoc.ToLower())){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
+    
 }

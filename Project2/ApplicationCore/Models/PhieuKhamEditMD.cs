@@ -19,6 +19,7 @@ namespace ApplicationCore.Models
       [DisplayName("Triệu chứng")]
       public string TrieuChung { get; set; }
       [DisplayName("Ngày khám")]
+      [DataType(DataType.Date)]
       public DateTime  NgayKham{ get; set; }   
     }
 }

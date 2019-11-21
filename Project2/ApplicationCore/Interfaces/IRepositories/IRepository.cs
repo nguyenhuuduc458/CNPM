@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -9,6 +8,9 @@ namespace ApplicationCore.Interfaces.IRepositories
         T GetById (int id);
         IEnumerable<T> GetAll ();
         IEnumerable<T> Find (Expression<Func<T, bool>> predicate);
+        // find using specification
+        IEnumerable<T> FindSpec(ISpecification<T> spec);
+        int Count(ISpecification<T> spec);
         void Add (T Entity);
         void AddRange (IEnumerable<T> Entities);
         void Remove (T Entity);

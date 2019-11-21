@@ -6,6 +6,7 @@ using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Interfaces.IServices;
+using ApplicationCore.Specifications;
 using AutoMapper;
 
 namespace ApplicationCore.Services {
@@ -42,14 +43,17 @@ namespace ApplicationCore.Services {
             return _mapper.Map<Thuoc, ThuocDTO> (thuoc);
         }
 
-        public IEnumerable<ThuocDTO> GetThuocs (string searchString) {
-            Expression<Func<Thuoc, bool>> predicate = m => true;
-            if (!string.IsNullOrEmpty (searchString)) {
-                predicate = m => m.TenThuoc.ToLower().Contains(searchString.ToLower());
-            }
+        public IEnumerable<ThuocDTO> GetThuocs(string searchString,int pageIndex, int pageSize, out int count){
+            
+            ThuocSpecification thuocFilterPaging = new ThuocSpecification(searchString, pageIndex, pageSize);
+            ThuocSpecification thuocFilter = new ThuocSpecification(searchString);
+            
+            var thuoc = _unitOfWork.Thuocs.FindSpec(thuocFilterPaging);
+            
+            count = _unitOfWork.Thuocs.Count(thuocFilter);
 
-            var thuoc = _unitOfWork.Thuocs.Find (predicate);
-            return _mapper.Map<IEnumerable<Thuoc>, IEnumerable<ThuocDTO>> (thuoc);
+            return _mapper.Map<IEnumerable<Thuoc>, IEnumerable<ThuocDTO>>(thuoc);
         }
+
     }
 }

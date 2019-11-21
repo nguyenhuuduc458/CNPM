@@ -27,8 +27,11 @@ namespace ApplicationCore.Mapping {
             //mapping CTDT
             CreateMap<ChiTietDonThuoc, SaveChiTietDonThuocDTO>();
             CreateMap<SaveChiTietDonThuocDTO, ChiTietDonThuoc>();
-            
-            
+            // mapping benh
+            CreateMap<Benh, SaveBenhDTO>();
+            CreateMap<SaveBenhDTO, Benh>();
+
+
         }
 
     }

@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Thuốc</title>
+    <title>Danh sách thuốc</title>
 </head>
 <body>
 <h5>Danh sách các loại thuốc</h5>
@@ -16,9 +16,10 @@
 <div class="row" style="margin-top:5px;margin-left:2px">
     <a class="btn btn-outline-info" asp-action="Create" asp-controller="Thuoc">Thêm mới</a>
 </div>
+
 <form asp-action="Index" asp-controller="Thuoc" asp-method="get">
     <p>
-        Tìm mã:
+        Tìm tên thuốc: 
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="CurrentFilter" style="width:20px;"  value="@ViewData["CurrentFilter"]" placeholder="Nhập tên thuốc...." />
             <div class="input-group-append">
@@ -62,8 +63,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaThuoc">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MaThuoc">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaThuoc">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.MaThuoc">Details</a>
             </td>
         </tr>
 }
@@ -78,7 +78,6 @@
     <li class="page-item">
         <a asp-action="Index"  class="page-link" style="@disPre"
         asp-route-pageIndex="@( Model.Thuocs.PageIndex - 1 )"
-        asp-route-sort="@ViewBag.CurrentSort"
         asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
     </li>           
         @{     
@@ -103,7 +102,6 @@
                             <a class="page-link"
                             asp-action="Index"
                             asp-route-pageIndex="@i"
-                            asp-route-sortOrder="@ViewBag.CurrentSort"
                             asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
                         </li>
                     }

@@ -1,0 +1,29 @@
+@model ApplicationCore.DTOs.SaveBenhDTO
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thông tin chi tiết</title>
+</head>
+<body>
+
+<div>
+    <h4>Benh</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaBenh)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenBenh)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MaBenh">Sửa </a> |
+    <a asp-action="Index">Trở lại trang trước</a>
+</div>
+</body>
+</html>

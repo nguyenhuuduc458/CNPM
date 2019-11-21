@@ -2,59 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
+using ApplicationCore.Interfaces.IServices;
 using MVCPage.ViewModel;
 
 namespace MVCPage.Services
 {
-    public class BenhServiceView : IBenhServiceVIew
+    public class BenhServiceView : IBenhServiceView
     {
-        private readonly IUnitOfWork _unitOfWork;
-        
-        public BenhServiceView(IUnitOfWork unitOfWork){
-            _unitOfWork = unitOfWork;
+        private int pageSize = 3;
+        private IBenhService _service;
+        public BenhServiceView(IBenhService service){
+            _service = service;
         }
-        public void Create(Benh benh)
+        public BenhIndexVM GetBenhIndexVM(string searchString,string sortOrder, int pageIndex)
         {
-            _unitOfWork.Benhs.Add(benh);
-            _unitOfWork.Complete();
-        }
-
-        public void Delete(int id)
-        {
-            var benh = _unitOfWork.Benhs.GetById(id);
-            if(benh !=null){
-                _unitOfWork.Benhs.Remove(benh);
-                _unitOfWork.Complete();
-            }
-        }
-        public void Edit(Benh benh)
-        {
-            _unitOfWork.Benhs.Update(benh);
-        }
-
-        public BenhIndexVM GetBenhIndexVM(string sortOrder, string searchString, int pageIndex)
-        {
-             Expression<Func<Benh, bool>> predicate = m => true;
-            //search
-            if (!String.IsNullOrEmpty (searchString)) {
-                predicate = m => m.TenBenh.ToLower ().Contains (searchString.ToLower ());
-            }
-            var benh = _unitOfWork.Benhs.Find (predicate);
-            //sort 
-            switch (sortOrder) {
-                case "Ma_desc":
-                    benh = benh.OrderBy(m => m.MaBenh);
-                    break;
-                default:
-                    benh = benh.OrderByDescending (m => m.TenBenh);
-                    break;
-            }
-            //paging
-            int pageSize = 3;
+            int count;
+            var benh = _service.GetBenhs(searchString, sortOrder, pageIndex, pageSize, out count);
             return new BenhIndexVM {
-                Benhs = PaginatedList<Benh>.Create (benh, pageIndex, pageSize)
+                Benhs = new PaginatedList<SaveBenhDTO>(benh, pageIndex, pageSize,count)
             };
         }
 

@@ -11,10 +11,11 @@ namespace MVCPage.Services {
         public ThuocServiceView (IThuocService service) {
             _service = service;
         }
-        public ThuocIndexVM GetThuocIndexVM (string CurrentFilter, int pageIndex = 1) {
-            var thuoc = _service.GetThuocs(CurrentFilter);
+        public ThuocIndexVM GetThuocIndexVM (string CurrentFilter, int pageIndex) {
+            int count;
+            var thuoc = _service.GetThuocs(CurrentFilter,pageIndex,pageSize,out count);
             return new ThuocIndexVM {
-                Thuocs = PaginatedList<ThuocDTO>.Create (thuoc, pageIndex, pageSize)
+                Thuocs = new PaginatedList<ThuocDTO>(thuoc, pageIndex, pageSize,count)
             };
         }
         

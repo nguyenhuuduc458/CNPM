@@ -1,14 +1,13 @@
 @model MVCPage.ViewModel.PhieuKhamCreateVM
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Tạo phiếu khám";
 }
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" asp-controller="PhieuKham" asp-method="post" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                Mã bệnh nhân
-                <input asp-for="PhieuKhams.MaBenhNhan" class="form-control" readonly/>
+                <input asp-for="PhieuKhams.MaBenhNhan" class="form-control" type="hidden"/>
                 <span asp-validation-for="PhieuKhams.MaBenhNhan" class="text-danger"></span>
             </div>
 
@@ -16,9 +15,13 @@
                 <input type="hidden" asp-for="PhieuKhams.MaNhanVien" class="form-control" />
                 <span asp-validation-for="PhieuKhams.MaNhanVien" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label class="control-label">Tên bệnh nhân</label>
+                <input type="Text" class="form-control"  asp-for="PhieuKhams.TenBenhNhan" disabled />
+            </div>
              <div class="form-group">
                 <label class="control-label">Tên Bác Sỹ</label>
-                <input type="Text" class="form-control"  value="@ViewData["TenBacSy"]" disabled />
+                <input type="Text" class="form-control"  asp-for="PhieuKhams.TenBacSy" disabled />
             </div>
             <div class="form-group">
                 Triệu chứng

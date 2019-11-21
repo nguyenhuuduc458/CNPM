@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Interfaces.IRepositories;
@@ -24,6 +26,11 @@ namespace Infrastructure.Persistence.Repositories
             phieukham.TrangThai = "Đã kê toa";
             QuanLyPhongMach.Entry(phieukham).State = EntityState.Modified;
             QuanLyPhongMach.SaveChanges();
+        }
+
+        public int GetMaDonThuoc(int MaPhieuKham)
+        {
+            return QuanLyPhongMach.DonThuocs.Where(m => m.MaPhieuKham == MaPhieuKham).Select(m => m.MaDonThuoc).FirstOrDefault();
         }
     }
 }

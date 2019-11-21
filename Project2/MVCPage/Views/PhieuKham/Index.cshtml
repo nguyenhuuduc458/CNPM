@@ -2,7 +2,7 @@
 @model MVCPage.ViewModel.PhieuKhamIndexVM
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Thông tin phiếu khám";
 }
 <h5>Danh sách phiếu khám</h5>
 <hr />
@@ -53,10 +53,13 @@
                 @item.ChuanDoan
             </td>
             <td>
-                @item.NgayKham
+                @{
+                   var NgayKham = String.Format("{0:dd-MM-yyyy}",@item.NgayKham);
+                }
+                @NgayKham
             </td>
              <td>
-                  @if (@item.TrangThai.Equals("Đã kê toa")){
+                @if (@item.TrangThai.Equals("Đã kê toa")){
                     <p style="color:green;"><b>@item.TrangThai</b></p>
                 }else{
                     <p style="color:gray;"><b>@item.TrangThai</b></p>

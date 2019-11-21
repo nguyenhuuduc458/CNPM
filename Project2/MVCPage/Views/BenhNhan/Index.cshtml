@@ -1,13 +1,16 @@
 @using Microsoft.AspNetCore.Http;
 @model MVCPage.ViewModel.BenhNhanIndexVM
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách bệnh";
 }
-<h5>Danh sách bệnh nhân </h5>
+<h5>Danh sách bệnh nhân</h5>
 <hr />
-<div class="row" style="margin-top:5px;margin-left:2px">
-    <a class="btn btn-outline-info" asp-action="Create">Thêm mới</a>
-</div>
+@{
+    var Hidden = @Context.Session.GetString("Role") != "3" ? "Visibility: hidden" : "";
+}
+    <div class="row" style="margin-top:5px;margin-left:2px; @Hidden">
+        <a class="btn btn-outline-info" asp-action="Create">Thêm mới</a>
+    </div>
 <form method="get">
     <p>
         Tìm Tên:
@@ -49,15 +52,17 @@
                 @item.GioiTinh
             </td>
             <td>
-                @item.NgaySinh
+                @{
+                    var NgaySinh = String.Format("{0:dd-MM-yyyy}",@item.NgaySinh);
+                }
+                @NgaySinh
             </td>
             <td>
                 @item.DiaChi
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MaBenhNhan">Sửa</a> |
-                <a asp-action="Details" asp-route-id="@item.MaBenhNhan">Chi Tiết</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaBenhNhan">Xóa</a>     
+                <a asp-action="Details" asp-route-id="@item.MaBenhNhan">Chi Tiết</a>
                 @{
                     if(@Context.Session.GetString("Role") == "2"){
                          <span>|</span><a asp-action="Create" asp-controller="PhieuKham"  asp-route-id="@item.MaBenhNhan">&nbsp;Lập phiếu Khám </a>

@@ -33,11 +33,11 @@ namespace MVCPage.Controllers {
             string username = user.TenDangNhap;
             string password = user.MatKhau;       
             if (_service.Login(username,password)==true){
-                List<string> listSession = _service.CreateSession(username);
+                List<string> listSession = _service.CreateSession(username,password);
                 HttpContext.Session.SetString ("Username", username);
                 HttpContext.Session.SetString("TenNhanVien",listSession.ElementAt(0));
                 HttpContext.Session.SetString ("Role",listSession.ElementAt(1));
-                //HttpContext.Session.SetString("MaNhanVien", maNhanVien.ToString());
+                HttpContext.Session.SetString("MaNhanVien", listSession.ElementAt(2).ToString());
                 return View ("../Home/Index");
             }else{
                 @ViewData["Error"] = "Tên đăng nhập hoặc mật khẩu không hợp lệ";

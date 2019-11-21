@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Net.Http.Headers;
+using System.Net;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ApplicationCore.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace MVCPage.Controllers
 {
@@ -20,7 +23,12 @@ namespace MVCPage.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var role = HttpContext.Session.GetString("Role");
+            if(role == "1" ||role == "2" || role == "3"){
+                return View();
+            }else{
+                return View("../Account/Index");
+            }
         }
 
         public IActionResult Privacy()

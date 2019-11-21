@@ -33,7 +33,16 @@
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper" >
       <div class="sidebar-heading">Quản lý phòng khám</div>
-      @Html.Partial("_MainMenu")
+      @{
+        
+        if(@Context.Session.GetString("Role").Equals("1")){
+          @Html.Partial("_QTVMenu")
+        }else if(@Context.Session.GetString("Role").Equals("2")){
+          @Html.Partial("_BSMenu")
+        }else {
+           @Html.Partial("_NVMenu")
+        }
+      }
     </div>
     <!-- /#sidebar-wrapper -->
 

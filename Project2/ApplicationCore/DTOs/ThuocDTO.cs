@@ -18,16 +18,14 @@ namespace ApplicationCore.DTOs
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MaThuoc { get; set; }
-        
         public string TenThuoc { get; set; }
 
-       
         public int SoLuong { get; set; }
 
         public string DonVi { get; set; }
-        public Nullable<double> DonGia { get; set; }
+        public double DonGia {get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonThuoc> ChiTietDonThuocs { get; set; }
-    }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<ChiTietDonThuoc> ChiTietDonThuocs { get; set; }
+}
 }

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using ApplicationCore.Entities;
+using ApplicationCore.Models;
 
 namespace MVCPage.ViewModel
 {
     public class PhieuKhamCreateVM
     {
-        public PhieuKham PhieuKhams { get; set; }
+        public PhieuKhamEditMD PhieuKhams { get; set; }
         public IEnumerable<Benh> listTenBenh { get; set; }
     }
 }

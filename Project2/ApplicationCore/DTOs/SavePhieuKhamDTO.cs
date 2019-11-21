@@ -26,6 +26,7 @@ namespace ApplicationCore.DTOs
         [Required]
         public string TrieuChung { get; set; }
         [DisplayName("Ngày khám")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> NgayKham { get; set; }
         [Required]
         [DisplayName("Trạng thái")]

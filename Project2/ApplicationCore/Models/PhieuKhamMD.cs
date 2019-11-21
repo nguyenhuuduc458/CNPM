@@ -16,8 +16,8 @@ namespace ApplicationCore.Models
       [DisplayName("Chuẩn đoán")]
       [Required]
       public string ChuanDoan { get; set; }
-      [DataType(DataType.Date)]
       [DisplayName("Ngày khám")]
+      [DataType(DataType.Date)]
       public DateTime  NgayKham{ get; set; }
       [Required]
       [DisplayName("Trạng thái ")]

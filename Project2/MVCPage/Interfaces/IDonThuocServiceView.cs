@@ -10,7 +10,7 @@ namespace MVCPage.Services
         DonThuocIndexVM GetDonThuocIndexVM(int MaDonThuoc,string searchString, int pageIndex);
         CreateDonThuocVM GetCreateDonThuocVM(CreateDonThuocVM createDonThuocVM,int MaPhieuKham);
         IEnumerable<Thuoc> GetAllListThuoc();
-        void LapDonThuoc(IEnumerable<ThongTinDonThuoc> ttdt,int MaPhieuKham);
-
+        bool KiemTraSoLuongTonKho(string TenThuoc,int soluongketoa);
+        bool KiemTraThuocExist(string TenThuoc);
     }
 }
