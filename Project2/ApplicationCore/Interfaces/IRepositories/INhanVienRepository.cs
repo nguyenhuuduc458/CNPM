@@ -7,5 +7,6 @@ namespace ApplicationCore.Interfaces.IRepositories
     public interface INhanVienRepository : IRepository<NhanVien> {
         IEnumerable<string> GetGioiTinh ();
         IEnumerable<string> GetVaiTro ();
+        void UpdatePassword(string username,string MatKhau,string matKhauMoi);
     }
 }

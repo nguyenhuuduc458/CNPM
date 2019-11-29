@@ -179,3 +179,5 @@ C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\net
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Create.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Details.cshtml.g.cs
 C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\Benh\Edit.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\NhanVien\DetailsPersonal.cshtml.g.cs
+C:\Users\DELL\Documents\Công nghệ phần mềm\Project2\MVCPage\obj\Debug\netcoreapp3.0\Razor\Views\NhanVien\ChangePassword.cshtml.g.cs

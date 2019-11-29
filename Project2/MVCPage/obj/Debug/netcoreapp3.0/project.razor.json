@@ -15,7 +15,7 @@
         "Kind": "Components.Component",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n             <summary>\n             Combines the behaviors of <see cref=\"T:Microsoft.AspNetCore.Components.Authorization.AuthorizeView\" /> and <see cref=\"T:Microsoft.AspNetCore.Components.RouteView\" />,\n             so that it displays the page matching the specified route but only if the user\n             is authorized to see it.\n            \n             Additionally, this component supplies a cascading parameter of type <see cref=\"T:System.Threading.Tasks.Task`1\" />,\n             which makes the user's current authentication state available to descendants.\n             </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -35,7 +35,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The content that will be displayed while asynchronous authorization is in progress.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Authorizing",
@@ -50,7 +50,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The content that will be displayed if the user is not authorized.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "NotAuthorized",
@@ -112,7 +112,7 @@
         "Kind": "Components.Component",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n             <summary>\n             Combines the behaviors of <see cref=\"T:Microsoft.AspNetCore.Components.Authorization.AuthorizeView\" /> and <see cref=\"T:Microsoft.AspNetCore.Components.RouteView\" />,\n             so that it displays the page matching the specified route but only if the user\n             is authorized to see it.\n            \n             Additionally, this component supplies a cascading parameter of type <see cref=\"T:System.Threading.Tasks.Task`1\" />,\n             which makes the user's current authentication state available to descendants.\n             </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -132,7 +132,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The content that will be displayed while asynchronous authorization is in progress.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Authorizing",
@@ -147,7 +147,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The content that will be displayed if the user is not authorized.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "NotAuthorized",
@@ -210,7 +210,7 @@
         "Kind": "Components.ChildContent",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n            <summary>\n            The content that will be displayed while asynchronous authorization is in progress.\n            </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -235,7 +235,7 @@
         "Kind": "Components.ChildContent",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.Authorizing",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n            <summary>\n            The content that will be displayed while asynchronous authorization is in progress.\n            </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -261,7 +261,7 @@
         "Kind": "Components.ChildContent",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n            <summary>\n            The content that will be displayed if the user is not authorized.\n            </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -301,7 +301,7 @@
         "Kind": "Components.ChildContent",
         "Name": "Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized",
         "AssemblyName": "Microsoft.AspNetCore.Components.Authorization",
-        "Documentation": "\n            <summary>\n            The content that will be displayed if the user is not authorized.\n            </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": true,
         "TagMatchingRules": [
@@ -9043,7 +9043,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.Razor",
-        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting elements containing attributes with URL expected values.\n            </summary>\n            <remarks>Resolves URLs starting with '~/' (relative to the application's 'webroot' setting) that are not\n            targeted by other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s. Runs prior to other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s to ensure\n            application-relative URLs are resolved.</remarks>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -14344,183 +14344,193 @@
   "RootNamespace": "MVCPage",
   "Documents": [
     {
-      "FilePath": "Views\\Account\\Index.cshtml",
-      "TargetPath": "Views\\Account\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\BenhNhan\\Delete.cshtml",
-      "TargetPath": "Views\\BenhNhan\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Benh\\Details.cshtml",
-      "TargetPath": "Views\\Benh\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\BenhNhan\\Create.cshtml",
-      "TargetPath": "Views\\BenhNhan\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Benh\\Edit.cshtml",
-      "TargetPath": "Views\\Benh\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\PhieuKham\\Edit.cshtml",
-      "TargetPath": "Views\\PhieuKham\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\DonThuoc\\Index.cshtml",
-      "TargetPath": "Views\\DonThuoc\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Benh\\Create.cshtml",
-      "TargetPath": "Views\\Benh\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\BaoCao\\Index.cshtml",
-      "TargetPath": "Views\\BaoCao\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Thuoc\\Edit.cshtml",
-      "TargetPath": "Views\\Thuoc\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Benh\\Index.cshtml",
-      "TargetPath": "Views\\Benh\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\NhanVien\\Details.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\Details.cshtml",
       "TargetPath": "Views\\NhanVien\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\NhanVien\\Delete.cshtml",
-      "TargetPath": "Views\\NhanVien\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\DonThuoc\\Create.cshtml",
-      "TargetPath": "Views\\DonThuoc\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\BenhNhan\\Edit.cshtml",
-      "TargetPath": "Views\\BenhNhan\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Thuoc\\Create.cshtml",
-      "TargetPath": "Views\\Thuoc\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\NhanVien\\Create.cshtml",
-      "TargetPath": "Views\\NhanVien\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\PhieuKham\\Index.cshtml",
-      "TargetPath": "Views\\PhieuKham\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\NhanVien\\Index.cshtml",
-      "TargetPath": "Views\\NhanVien\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\DonThuoc\\Details.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\DonThuoc\\Details.cshtml",
       "TargetPath": "Views\\DonThuoc\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\NhanVien\\Edit.cshtml",
-      "TargetPath": "Views\\NhanVien\\Edit.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\BenhNhan\\Index.cshtml",
-      "TargetPath": "Views\\BenhNhan\\Index.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Benh\\Index.cshtml",
+      "TargetPath": "Views\\Benh\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Thuoc\\Details.cshtml",
-      "TargetPath": "Views\\Thuoc\\Details.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Thuoc\\Create.cshtml",
+      "TargetPath": "Views\\Thuoc\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Shared\\_BSMenu.cshtml",
-      "TargetPath": "Views\\Shared\\_BSMenu.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Account\\Index.cshtml",
+      "TargetPath": "Views\\Account\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\PhieuKham\\Index.cshtml",
+      "TargetPath": "Views\\PhieuKham\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\BenhNhan\\Details.cshtml",
-      "TargetPath": "Views\\BenhNhan\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Shared\\_NVMenu.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Shared\\_NVMenu.cshtml",
       "TargetPath": "Views\\Shared\\_NVMenu.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Thuoc\\Delete.cshtml",
-      "TargetPath": "Views\\Thuoc\\Delete.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Shared\\_BSMenu.cshtml",
+      "TargetPath": "Views\\Shared\\_BSMenu.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Shared\\_QTVMenu.cshtml",
-      "TargetPath": "Views\\Shared\\_QTVMenu.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BenhNhan\\Create.cshtml",
+      "TargetPath": "Views\\BenhNhan\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\PhieuKham\\Create.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\DonThuoc\\Create.cshtml",
+      "TargetPath": "Views\\DonThuoc\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Benh\\Create.cshtml",
+      "TargetPath": "Views\\Benh\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BenhNhan\\Delete.cshtml",
+      "TargetPath": "Views\\BenhNhan\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\DetailsPersonal.cshtml",
+      "TargetPath": "Views\\NhanVien\\DetailsPersonal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\Index.cshtml",
+      "TargetPath": "Views\\NhanVien\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\Edit.cshtml",
+      "TargetPath": "Views\\NhanVien\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Thuoc\\Index.cshtml",
+      "TargetPath": "Views\\Thuoc\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BaoCao\\Index.cshtml",
+      "TargetPath": "Views\\BaoCao\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BenhNhan\\Index.cshtml",
+      "TargetPath": "Views\\BenhNhan\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BenhNhan\\Details.cshtml",
+      "TargetPath": "Views\\BenhNhan\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\PhieuKham\\Edit.cshtml",
+      "TargetPath": "Views\\PhieuKham\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\PhieuKham\\Create.cshtml",
       "TargetPath": "Views\\PhieuKham\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Thuoc\\Index.cshtml",
-      "TargetPath": "Views\\Thuoc\\Index.cshtml",
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Benh\\Edit.cshtml",
+      "TargetPath": "Views\\Benh\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Thuoc\\Edit.cshtml",
+      "TargetPath": "Views\\Thuoc\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Thuoc\\Delete.cshtml",
+      "TargetPath": "Views\\Thuoc\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\Create.cshtml",
+      "TargetPath": "Views\\NhanVien\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\DonThuoc\\Index.cshtml",
+      "TargetPath": "Views\\DonThuoc\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Thuoc\\Details.cshtml",
+      "TargetPath": "Views\\Thuoc\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Shared\\_QTVMenu.cshtml",
+      "TargetPath": "Views\\Shared\\_QTVMenu.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\Delete.cshtml",
+      "TargetPath": "Views\\NhanVien\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\BenhNhan\\Edit.cshtml",
+      "TargetPath": "Views\\BenhNhan\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\NhanVien\\ChangePassword.cshtml",
+      "TargetPath": "Views\\NhanVien\\ChangePassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Benh\\Details.cshtml",
+      "TargetPath": "Views\\Benh\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\MVCPage\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     }
   ],

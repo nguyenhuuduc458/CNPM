@@ -37,11 +37,9 @@ namespace ApplicationCore.Services
 
         public void Edit(SaveBenhDTO benh)
         {
-            var Benh = _unitOfWork.Benhs.GetById(benh.MaBenh);
-            if(Benh != null){
-                _unitOfWork.Benhs.Update(Benh);
-                _unitOfWork.Complete();
-            }
+            var Benh = _mapper.Map<SaveBenhDTO, Benh>(benh);
+            _unitOfWork.Benhs.Update(Benh);
+            _unitOfWork.Complete();
         }
 
         public IEnumerable<SaveBenhDTO> GetBenhs(string searchString,string sortOrder, int pageIndex, int pageSize, out int count)

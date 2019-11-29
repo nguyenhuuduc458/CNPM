@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace MVCPage.Controllers {
             NhanVienIndexVM indexNV = _serviceView.GetNhanVienIndexVM(sortOrder, CurrentFilter, pageIndex);
             return View (indexNV);
             }else{
-             return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -59,7 +60,7 @@ namespace MVCPage.Controllers {
                 return View(nhanVien);
 
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -71,7 +72,7 @@ namespace MVCPage.Controllers {
                 ViewData["MaVaiTro"] = _service.GetAllMaVT();
                 return View();
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -84,7 +85,7 @@ namespace MVCPage.Controllers {
                 _service.Create(nhanVien);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -109,7 +110,7 @@ namespace MVCPage.Controllers {
                 ViewData["GioiTinhConLai"] = nhanVien.GioiTinh.ToString().Equals("Nam") ? "Nữ" : "Nam";
                 return View(nhanVien);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -125,7 +126,7 @@ namespace MVCPage.Controllers {
                 _service.Edit(nhanVien);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -146,7 +147,7 @@ namespace MVCPage.Controllers {
                 }
                 return View(nhanVien);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -159,9 +160,62 @@ namespace MVCPage.Controllers {
                 _service.Delete(id);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
-
         }
+
+        public IActionResult DetailsPersonal(){
+            if(HttpContext.Session.GetString("Username")!=null){
+                var MaNhanVien = HttpContext.Session.GetString("MaNhanVien");
+                var nhanVien = _service.GetNhanVien(Convert.ToInt32(MaNhanVien));
+                ViewData["MaVaiTro"] = nhanVien.MaVaiTro.ToString();
+                ViewData["TenVaiTro"] = _service.GetTenVaiTro(nhanVien.MaVaiTro);
+                ViewData["DanhSach"] = _service.GetDSVTConlai(nhanVien.MaVaiTro);
+                ViewData["GioiTinh"] = nhanVien.GioiTinh.ToString();
+                ViewData["GioiTinhConLai"] = nhanVien.GioiTinh.ToString().Equals("Nam") ? "Nữ" : "Nam";
+                return View(nhanVien);
+            }else{
+                return RedirectToAction("Index","Account");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult DetailsPersonal( SaveNhanVienDTO nhanVien){
+            if (HttpContext.Session.GetString("Username") != null)
+            { 
+                _service.Edit(nhanVien);
+                return RedirectToAction("Index","Home");
+            }else{
+                return RedirectToAction("Index", "Account");
+            }
+        }
+
+        public IActionResult ChangePassword(){
+            if (HttpContext.Session.GetString("Username") != null)
+            {
+                return View();
+            }else{
+                return RedirectToAction("Index", "Account");
+            }
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(string MatKhau,string pass2){
+            if (HttpContext.Session.GetString("Username") != null)
+            {
+                if(_service.checkValidPassword(HttpContext.Session.GetString("Username"),MatKhau)){
+                    _service.UpdatePassword(HttpContext.Session.GetString("Username"),MatKhau,pass2);
+                }else{
+                    ViewData["InvalidPassword"] = "Mật khẩu cũ không khớp";
+                    ViewData["MatKhau"] = MatKhau;
+                    return View();
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Account");
+            }
+        }
+
     }
 }

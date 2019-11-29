@@ -69,7 +69,7 @@
                 @if(!@item.TrangThai.Equals("Đã kê toa")){
                     <p>
                 <a asp-action="Edit" asp-route-id="@item.Id">Sửa |</a>
-                <a asp-action="Create" asp-controller = "DonThuoc" asp-route-MaPhieuKham="@item.Id">Lập đơn thuốc</a>
+                <a asp-action="Create" asp-controller = "DonThuoc" asp-route-MaPhieuKham="@item.Id" asp-route-flag="1">Lập đơn thuốc</a>
                    </p>
                 }                     
             </td>

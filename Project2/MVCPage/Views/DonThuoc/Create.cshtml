@@ -1,7 +1,6 @@
 @model MVCPage.ViewModel.CreateDonThuocVM
 @{
     ViewData["Title"] = "Lập đơn thuốc";
-    var MaPhieuKham =  ViewData["MaPhieuKham"];
 }
 <h5><p>Lập đơn thuốc</p></h5>
 <hr />
@@ -12,9 +11,9 @@
             <div class="card">
                 <div class="card-header">Nhập thông tin đơn thuốc</div>
                 <div class="card-body">
-                    <form asp-action="Create" asp-controller="DonThuoc" asp-method="get" >
+                    <form asp-action="Create" asp-controller="DonThuoc" asp-method="post" >
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input type="hidden" asp-route-MaPhieuKham = "@ViewData["MaPhieuKham"]" />
+                        <input type="hidden" asp-route-MaPhieuKham = "@Model.MaPhieuKham" />
                         <div class="form-group">
                              <label asp-for="thongTinDonThuoc.TenThuoc" class="control-label"></label>
                             <input asp-for="@Model.thongTinDonThuoc.TenThuoc" class="form-control" required=""/>
@@ -51,19 +50,27 @@
                            <th>Tên thuốc</th>
                            <th>Số lượng</th>
                            <th>Cách dùng</th>
-                           <th>Thành tiền</th>
+                           <th>Thành tiền</th>     
+                           <th></th>          
                        </thead>
-                       <tbody>                     
-                               @foreach (var item in Model.listThongTinDonThuoc){
-                                   <tr>
-                                        <td>@item.TenThuoc </td>
-                                        <td>@item.SoLuong</td>
-                                        <td>@item.CachDung</td>
-                                        <td>@item.ThanhTien VND</td>
-                                    </tr>
-                                }
+                       <tbody>  
+                            @for(int i = 0; i < Model.listThongTinDonThuoc.Count; i++){
+                                <tr>
+                                    <td>@Model.listThongTinDonThuoc[i].TenThuoc </td>
+                                    <td>@Model.listThongTinDonThuoc[i].SoLuong</td>
+                                    <td>@Model.listThongTinDonThuoc[i].CachDung</td>
+                                    <td>@Model.listThongTinDonThuoc[i].ThanhTien VND</td>
+                                    <td>
+                                        <form asp-action="Remove" asp-controller="DonThuoc" method="get">
+                                            <input type="hidden" name="MaPhieuKham" value="@Model.MaPhieuKham" />
+                                            <input type="hidden" name="id" value="@i" /> 
+                                            <input type="submit" class="btn btn-danger" value="Xóa"/>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
                             <tr>
-                              <td colspan="4"><div style="margin-left:67%"> Tổng tiền:&nbsp;&nbsp;&nbsp;@Model.TongTien VND</div></td>
+                              <td colspan="5"><div style="margin-left:58%"> Tổng tiền:&nbsp;&nbsp;&nbsp;@Model.TongTien VND</div></td>
                             </tr>
                        </tbody> 
                    </table>
@@ -71,7 +78,6 @@
                  <div class="card-footer">
                     <form asp-controller="DonThuoc" asp-action="LapDonThuoc" asp-method="post" id="#myForm"> 
                         <input type="hidden" asp-for="@Model.MaPhieuKham" /> 
-                        <input type="hidden" id="flag2" value="1" /> 
                         <button type="submit" class="btn btn-primary" style="margin-left:75%">
                             Lập đơn thuốc
                         </button>

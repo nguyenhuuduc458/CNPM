@@ -11,7 +11,7 @@ namespace Infrastructure.Persistence.Configuration
             builder.HasKey(b => b.MaBenh);
 
             builder.Property(b => b.TenBenh)
-                   .IsRequired();
+                   .IsRequired(true);
         }
     }
 }

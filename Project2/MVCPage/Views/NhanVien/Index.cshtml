@@ -74,8 +74,8 @@
     <li class="page-item">
         <a asp-action="Index"  class="page-link" style="@disPre"
         asp-route-pageIndex="@( Model.NhanViens.PageIndex - 1 )"
-        asp-route-sort="@ViewBag.CurrentSort"
-        asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
+        asp-route-sortOrder="@ViewData["CurrentSort"]"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"> Previous </a>
     </li>           
         @{     
             for(int i=1; i <= Model.NhanViens.TotalPages; i++)
@@ -99,8 +99,8 @@
                             <a class="page-link"
                             asp-action="Index"
                             asp-route-pageIndex="@i"
-                            asp-route-sortOrder="@ViewBag.CurrentSort"
-                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                            asp-route-sortOrder="@ViewData["CurrentSort"]"
+                            asp-route-currentFilter="@ViewData["CurrentFilter"]"> @i </a>
                         </li>
                     }
                     if(@i==Model.NhanViens.PageIndex+2 && @i<Model.NhanViens.TotalPages)
@@ -122,8 +122,8 @@
                             <a class="page-link"
                             asp-action="Index"
                             asp-route-pageIndex="@i"
-                            asp-route-sortOrder="@ViewBag.CurrentSort"
-                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                            asp-route-sortOrder="@ViewData["CurrentSort"]"
+                            asp-route-currentFilter="@ViewData["CurrentFilter"]"> @i </a>
                         </li>
                     }
                 }         
@@ -132,7 +132,7 @@
 <li class="page-item">
         <a asp-action="Index"  class="page-link" style="@disNext"
         asp-route-pageIndex="@( Model.NhanViens.PageIndex + 1 )"
-        asp-route-sort="@ViewBag.CurrentSort"
-        asp-route-currentFilter="@ViewBag.CurrentFilter"> Next </a>
+        asp-route-sortOrder="@ViewData["CurrentSort"]"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"> Next </a>
 </li>  
 </ul>

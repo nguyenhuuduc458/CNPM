@@ -30,7 +30,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -42,7 +42,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -57,7 +57,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
 
         }
@@ -75,7 +75,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -92,7 +92,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
         public IActionResult Delete(int? id)
@@ -109,7 +109,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
         [HttpPost]
@@ -127,7 +127,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -144,7 +144,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 

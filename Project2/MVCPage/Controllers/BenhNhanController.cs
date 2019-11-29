@@ -33,8 +33,8 @@ namespace MVCPage.Controllers {
                 BenhNhanIndexVM indexNV = _serviceView.GetBenhNhanIndexVM (sortOrder, CurrentFilter, pageIndex);
                 return View (indexNV);
             } else {
-                return View ("../Account/Index");
-            }
+                 return RedirectToAction("Index", "Account");
+            }           
         }
 
         // GET: NhanVien/Details/5
@@ -55,7 +55,7 @@ namespace MVCPage.Controllers {
 
                 return View(benhNhan);
             }else{
-                return View("../Account/Index");   
+                 return RedirectToAction("Index", "Account");   
             }
           
         }
@@ -65,7 +65,7 @@ namespace MVCPage.Controllers {
             {
                 return View ();
             }else{
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
 
@@ -82,7 +82,7 @@ namespace MVCPage.Controllers {
                 }
                 return View(benhNhan);
             }else{
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
            
         }
@@ -107,7 +107,7 @@ namespace MVCPage.Controllers {
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
            
         }
@@ -125,7 +125,7 @@ namespace MVCPage.Controllers {
                 _service.Edit(benhNhan);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
            
         }
@@ -148,7 +148,7 @@ namespace MVCPage.Controllers {
 
                 return View(benhNhan);
             }else{
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
 
         }
@@ -163,7 +163,7 @@ namespace MVCPage.Controllers {
                 _service.Delete(id);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
            
         }

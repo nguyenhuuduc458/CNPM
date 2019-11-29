@@ -20,20 +20,21 @@ namespace MVCPage.Controllers
             _service = service;
             _serviceView = serviceView;
         }
-        public IActionResult Index(string searchString, string sortOrder, int pageIndex = 1)
+        public IActionResult Index(string currentFilter, string sortOrder, int pageIndex = 1)
         {
             
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role").Equals("3"))
             {
                 ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "ten_desc" : "";
-                ViewData["CurrentFilter"] = searchString;
+                ViewData["CurrentFilter"] = currentFilter;
                 ViewData["CurrentSort"] = sortOrder;
-                BenhIndexVM vm = _serviceView.GetBenhIndexVM(searchString, sortOrder, pageIndex);
+                BenhIndexVM vm = _serviceView.GetBenhIndexVM(currentFilter, sortOrder, pageIndex);
                 return View(vm);
+            
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
         public IActionResult Create()
@@ -44,7 +45,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
         [HttpPost]
@@ -61,7 +62,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
 
@@ -73,13 +74,13 @@ namespace MVCPage.Controllers
                 var benh = _service.GetBenh(id);
                 if (benh == null)
                 {
-                    return View();
+                    return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
+                return View(benh);
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
         [HttpPost]
@@ -87,15 +88,15 @@ namespace MVCPage.Controllers
         {
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role").Equals("3"))
             {
-                   if(id != SaveBenh.MaBenh){
+                if(id != SaveBenh.MaBenh){
                     return NotFound();
                 }
-                    _service.Edit(SaveBenh);
-                    return RedirectToAction(nameof(Index));
+                _service.Edit(SaveBenh);
+                return RedirectToAction(nameof(Index));
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
 
@@ -116,7 +117,7 @@ namespace MVCPage.Controllers
             }
             else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
         }
     }

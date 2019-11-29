@@ -40,7 +40,7 @@ namespace MVCPage.Controllers {
                 return View(vm);
             }else
             {
-                return View("../Account/Index");
+                 return RedirectToAction("Index", "Account");
             }
            
         }

@@ -17,7 +17,7 @@ namespace MVCPage.Controllers
     public class DonThuocController : Controller
     {
         public static List<ThongTinDonThuoc> listTam = null;
-        
+        public static int MaPK = 0;
         private readonly IDonThuocServiceView _serviceView;
         private readonly IDonThuocService _service;
         public DonThuocController(IDonThuocServiceView serviceView, IDonThuocService service)
@@ -34,28 +34,44 @@ namespace MVCPage.Controllers
                 DonThuocIndexVM vm = _serviceView.GetDonThuocIndexVM(MaDonThuoc, CurrentFilter, pageIndex);
                 return View(vm);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
         [HttpGet]
-        public IActionResult Create(int MaPhieuKham)
+        public IActionResult Create(int MaPhieuKham, int? flag)
         {
             string role = HttpContext.Session.GetString("Role");
             if (HttpContext.Session.GetString("Username") != null && (role.Equals("2") || role.Equals("3")))
             {
-                CreateDonThuocVM vm = new CreateDonThuocVM
-                {
-                    thongtinthuoc = _service.GetAllListThuoc(),
-                    MaPhieuKham = MaPhieuKham,
-                    listThongTinDonThuoc = new List<ThongTinDonThuoc>()
-                };
-                if (listTam != null)
-                {
-                    listTam.Clear();
+                
+                if(flag != null){
+                    MaPK = 0;
                 }
-                return View(vm);
+                if(MaPK == 0){
+                    if (listTam != null)
+                    {
+                        listTam.Clear();
+                    }
+                    CreateDonThuocVM vm = new CreateDonThuocVM
+                    {
+                        thongtinthuoc = _service.GetAllListThuoc(),
+                        MaPhieuKham = MaPhieuKham,
+                        listThongTinDonThuoc = new List<ThongTinDonThuoc>()
+                    };
+                    return View(vm);
+                }else if(MaPK!=0){
+                    CreateDonThuocVM vm = new CreateDonThuocVM
+                    {
+                        thongtinthuoc = _service.GetAllListThuoc(),
+                        MaPhieuKham = MaPK,
+                        listThongTinDonThuoc = listTam,
+                        TongTien = _service.TinhTongTien(listTam)
+                    };
+                    return View(vm);
+                }
+                return null;
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
         [HttpPost]
@@ -75,7 +91,8 @@ namespace MVCPage.Controllers
                         MaPhieuKham = MaPhieuKham,
                         listThongTinDonThuoc = listTam,
                         TongTien = _service.TinhTongTien(listTam)
-                    };  
+                    };
+                    MaPK = MaPhieuKham;
                     return View(vm);
                 }else if (!_serviceView.KiemTraSoLuongTonKho(CreateDonThuocVM.thongTinDonThuoc.TenThuoc, CreateDonThuocVM.thongTinDonThuoc.SoLuong))
                 {
@@ -87,14 +104,16 @@ namespace MVCPage.Controllers
                             listThongTinDonThuoc = listTam,
                             TongTien = _service.TinhTongTien(listTam)
                         };
+                    MaPK = MaPhieuKham;
                     return View(vm);   
                 }else
                 {
                     CreateDonThuocVM vm = _serviceView.GetCreateDonThuocVM(CreateDonThuocVM, MaPhieuKham);
+                    MaPK = MaPhieuKham;
                     return View(vm);
                 }
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
            
         }
@@ -104,11 +123,16 @@ namespace MVCPage.Controllers
             string role = HttpContext.Session.GetString("Role");
             if (HttpContext.Session.GetString("Username") != null && (role.Equals("2") || role.Equals("3")))
             { 
-                _service.LapDonThuoc(listTam, MaPhieuKham);
-                _service.CapNhatTrangThaiPhieuKham(MaPhieuKham);
-                return RedirectToAction("Index");
+                if(listTam == null){
+                    return RedirectToAction("Create","DonThuoc");
+                }else{
+                    _service.LapDonThuoc(listTam, MaPhieuKham);
+                    _service.CapNhatTrangThaiPhieuKham(MaPhieuKham);
+                    MaPK = 0;
+                    return RedirectToAction("Index");
+                }       
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
             
         }
@@ -121,7 +145,24 @@ namespace MVCPage.Controllers
                 @ViewData["MaDonThuoc"] = MaDonThuoc;
                 return View(ctdt);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
+            }
+           
+        }
+        [HttpGet]
+        public IActionResult Remove(int MaPhieuKham,int id){
+            string role = HttpContext.Session.GetString("Role");
+            if (HttpContext.Session.GetString("Username") != null && (role.Equals("2") || role.Equals("3")))
+            {
+                if(listTam.Count == 1){
+                    MaPK = 0;
+                }else{
+                    MaPK = MaPhieuKham;
+                }
+                listTam.RemoveAt(id);
+                return RedirectToAction("Create","DonThuoc");
+            }else{
+                return RedirectToAction("Index", "Account");
             }
            
         }

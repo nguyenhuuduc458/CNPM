@@ -31,7 +31,7 @@ namespace MVCPage.Controllers {
                 PhieuKhamIndexVM indexNV = _serviceView.GetPhieuKhamIndexVM (CurrentFilter, pageIndex,MaNhanVien);
              return View (indexNV);
             }else{
-             return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 
@@ -42,7 +42,7 @@ namespace MVCPage.Controllers {
                 PhieuKhamCreateVM vm = _serviceView.GetPhieuKhamCreateVM(id,MaNhanVien);
                 return View(vm);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }               
         }
         [HttpPost]
@@ -66,7 +66,7 @@ namespace MVCPage.Controllers {
                 }
                 return View(pk);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
            
         }
@@ -78,7 +78,7 @@ namespace MVCPage.Controllers {
                 ViewData["TrieuChung"] = vm.PhieuKhamEdit.TrieuChung;
                 return View(vm);
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
           
         }
@@ -105,7 +105,7 @@ namespace MVCPage.Controllers {
                 _service.Edit(savePK);
                 return RedirectToAction(nameof(Index));
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }       
         }
     }

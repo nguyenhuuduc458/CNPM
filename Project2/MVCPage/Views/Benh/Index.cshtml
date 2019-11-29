@@ -16,7 +16,7 @@
     <p>
         Tìm Tên:
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="searchString" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập loại bệnh..." />
+            <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập loại bệnh..." />
             <div class="input-group-append">
                <input type="submit" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
             </div>
@@ -61,8 +61,8 @@
     <li class="page-item">
         <a asp-action="Index"  class="page-link" style="@disPre"
         asp-route-pageIndex="@( Model.Benhs.PageIndex - 1 )"
-        asp-route-sort="@ViewBag.CurrentSort"
-        asp-route-currentFilter="@ViewBag.CurrentFilter"> Previous </a>
+        asp-route-sortOrder="@ViewData["CurrentSort"]"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"> Previous </a>
     </li>           
         @{     
             for(int i=1; i <= Model.Benhs.TotalPages; i++)
@@ -86,8 +86,8 @@
                             <a class="page-link"
                             asp-action="Index"
                             asp-route-pageIndex="@i"
-                            asp-route-sortOrder="@ViewBag.CurrentSort"
-                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                            asp-route-sortOrder="@ViewData["CurrentSort"]"
+                            asp-route-CurrentFilter="@ViewData["CurrentFilter"]"> @i </a>
                         </li>
                     }
                     if(@i==Model.Benhs.PageIndex+2 && @i<Model.Benhs.TotalPages)
@@ -109,8 +109,8 @@
                             <a class="page-link"
                             asp-action="Index"
                             asp-route-pageIndex="@i"
-                            asp-route-sortOrder="@ViewBag.CurrentSort"
-                            asp-route-currentFilter="@ViewBag.CurrentFilter"> @i </a>
+                            asp-route-sortOrder="@ViewData["CurrentSort"]"
+                            asp-route-currentFilter="@ViewData["CurrentFilter"]"> @i </a>
                         </li>
                     }
                 }         
@@ -119,8 +119,8 @@
 <li class="page-item">
         <a asp-action="Index"  class="page-link" style="@disNext"
         asp-route-pageIndex="@( Model.Benhs.PageIndex + 1 )"
-        asp-route-sort="@ViewBag.CurrentSort"
-        asp-route-currentFilter="@ViewBag.CurrentFilter"> Next </a>
+        asp-route-sort="@ViewData["CurrentSort"]"
+        asp-route-currentFilter="@ViewData["CurrentFilter"]"> Next </a>
 </li>  
 </ul>
 </body>

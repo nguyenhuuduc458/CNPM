@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.Net;
 using System;
 using System.Collections.Generic;
@@ -227,6 +228,29 @@ namespace ApplicationCore.Services
             }
             return max;
         }
+       
+        public void UpdatePassword(string username,string matKhau,string MatKhauMoi)
+        {
+            using (MD5 md5hash = MD5.Create())
+            {
+                var hashPassword = GetMd5hash(md5hash, matKhau);
+                var hashPasswordNew = GetMd5hash(md5hash, MatKhauMoi);
+                _unitOfWork.NhanViens.UpdatePassword(username,hashPassword,hashPasswordNew);
+            }
+        }
 
+        public bool checkValidPassword(string username, string matKhau)
+        {
+            using(MD5 md5hash = MD5.Create()){
+                var hashPassword = GetMd5hash(md5hash, matKhau);
+                FindNhanVienSpecification nv = new FindNhanVienSpecification(username,hashPassword);
+                NhanVien nhanvien = _unitOfWork.NhanViens.FindSpec(nv).FirstOrDefault();
+                if (nhanvien == null)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
     }
 }

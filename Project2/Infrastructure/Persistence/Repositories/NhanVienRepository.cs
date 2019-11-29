@@ -16,6 +16,16 @@ namespace Infrastructure.Persistence.Repositories {
         public IEnumerable<string> GetVaiTro () {
             return QuanLyPhongMach.VaiTros.Select (m => m.TenVaiTro).Distinct ().ToList ();;
         }
+
+        public void UpdatePassword(string username, string MatKhau, string matKhauMoi)
+        {
+            var nhanvien = QuanLyPhongMach.NhanViens.Where(u => u.TenDangNhap.Equals(username) && u.MatKhau.Equals(MatKhau)).FirstOrDefault();
+            nhanvien.MatKhau = matKhauMoi;
+            QuanLyPhongMach.Entry(nhanvien).State = EntityState.Modified;
+            QuanLyPhongMach.SaveChanges();
+
+        }
+
         protected QuanLyPhongMach QuanLyPhongMach {
             get { return Context as QuanLyPhongMach; }
         }

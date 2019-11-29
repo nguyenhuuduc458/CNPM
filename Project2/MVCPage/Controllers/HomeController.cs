@@ -27,7 +27,7 @@ namespace MVCPage.Controllers
             if(role == "1" ||role == "2" || role == "3"){
                 return View();
             }else{
-                return View("../Account/Index");
+                return RedirectToAction("Index", "Account");
             }
         }
 

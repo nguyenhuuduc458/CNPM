@@ -48,8 +48,7 @@ namespace ApplicationCore.Services {
             ThuocSpecification thuocFilterPaging = new ThuocSpecification(searchString, pageIndex, pageSize);
             ThuocSpecification thuocFilter = new ThuocSpecification(searchString);
             
-            var thuoc = _unitOfWork.Thuocs.FindSpec(thuocFilterPaging);
-            
+            var thuoc = _unitOfWork.Thuocs.FindSpec(thuocFilterPaging);      
             count = _unitOfWork.Thuocs.Count(thuocFilter);
 
             return _mapper.Map<IEnumerable<Thuoc>, IEnumerable<ThuocDTO>>(thuoc);

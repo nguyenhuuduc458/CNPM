@@ -50,7 +50,7 @@ namespace MVCPage.Controllers {
             HttpContext.Session.Remove("TenNhanVien");
             HttpContext.Session.Remove("Role");
        //   HttpContext.Session.Remove("MaNhanVien");
-            return View ("../Account/Index");
+             return RedirectToAction("Index", "Account");
         }
     }
 }

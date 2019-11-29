@@ -16,6 +16,7 @@ namespace ApplicationCore.Interfaces.IServices
         IEnumerable<SaveVaiTroDTO> GetAllMaVT();
         bool Login(string username, string password);
         List<string> CreateSession(string username, string password);
-
+        void UpdatePassword(string username,string matKhau,string MatKhauMoi);
+        bool checkValidPassword(string username,string matKhau);
     }
 }

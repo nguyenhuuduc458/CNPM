@@ -15,7 +15,7 @@ namespace ApplicationCore.Specifications
         }
         public static Expression<Func<NhanVien,bool>> MakeCriteria(string searchString){
             
-            Expression<Func<NhanVien, bool>> predicate = m => true;
+            Expression<Func<NhanVien, bool>> predicate = m => m.MaVaiTro != 1;
             
             if (!String.IsNullOrEmpty(searchString))
             {

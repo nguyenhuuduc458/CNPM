@@ -162,14 +162,6 @@ namespace Infrastructure.Persistence.Repositories {
               },
               new Benh
               {
-                  TenBenh = "Đau dạ dày"
-              },
-              new Benh
-              {
-                  TenBenh = "Đau họng"
-              },
-              new Benh
-              {
                   TenBenh = "Viêm xoang"
               }
               );
