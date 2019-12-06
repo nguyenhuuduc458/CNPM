@@ -47,14 +47,14 @@ namespace MVCPage.Controllers {
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create ( PhieuKhamCreateVM vm) {
+        public IActionResult Create (string TrieuChung,PhieuKhamCreateVM vm) {
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role") == "2")
             {
                 PhieuKham pk = new PhieuKham
                 {
                     MaNhanVien = vm.PhieuKhams.MaNhanVien,
                     MaBenhNhan = vm.PhieuKhams.MaBenhNhan,
-                    TrieuChung = vm.PhieuKhams.TrieuChung,
+                    TrieuChung = TrieuChung,
                     NgayKham = DateTime.Parse(String.Format("{0:yyyy-MM-dd}",vm.PhieuKhams.NgayKham)),
                     TrangThai = "Chưa kê toa"
                 };

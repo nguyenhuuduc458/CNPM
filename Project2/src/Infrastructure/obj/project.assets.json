@@ -7292,11 +7292,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\src\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\Project2\\src\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\src\\Infrastructure\\Infrastructure.csproj",
+      "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\Project2\\src\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\src\\Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\Project2\\src\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -7310,8 +7310,8 @@
       "frameworks": {
         "netstandard2.1": {
           "projectReferences": {
-            "C:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\src\\ApplicationCore\\ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\DELL\\Documents\\Công nghệ phần mềm\\Project2\\src\\ApplicationCore\\ApplicationCore.csproj"
+            "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\Project2\\src\\ApplicationCore\\ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\Project2\\src\\ApplicationCore\\ApplicationCore.csproj"
             }
           }
         }

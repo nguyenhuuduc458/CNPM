@@ -2,6 +2,13 @@
 @{
     ViewData["Title"] = "Tạo phiếu khám";
 }
+<script>
+$(document).ready(function(){
+   $('select').change(function(){
+       $('#TrieuChung').val( $("#ChuanDoan").val());
+   });
+});
+</script>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" asp-controller="PhieuKham" asp-method="post" >
@@ -24,12 +31,13 @@
                 <input type="Text" class="form-control"  asp-for="PhieuKhams.TenBacSy" disabled />
             </div>
             <div class="form-group">
-                Triệu chứng
-                <select asp-for="PhieuKhams.TrieuChung" class="form-control" required="">
+                Triệu chứng <br />
+                <select id="ChuanDoan" class="selectpicker" multiple data-live-search="true" placeholder="Vui lòng chọn bệnh" required="">
                     @foreach (var item in Model.listTenBenh){
                       <option value="@item.TenBenh">@item.TenBenh</option> 
                     }
                 </select>
+                <input type="hidden" id="TrieuChung" name="TrieuChung" value="" />
                 <span asp-validation-for="PhieuKhams.TrieuChung" class="text-danger"></span>
             </div>
              <div class="form-group">
