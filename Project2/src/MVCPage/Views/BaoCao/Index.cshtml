@@ -1,0 +1,309 @@
+@model MVCPage.ViewModel.BaoCaoVM
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Báo cáo doanh thu</title>
+</head>
+<body>
+<h5>Báo Cáo thống kê </h5>
+<hr />
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+    var start = document.getElementById("start");
+    var end = document.getElementById("end");
+    var year = document.getElementById("selectedYear");
+    var bc = document.getElementById("BaoCao");
+    if(localStorage['start']){
+        start.value = localStorage['start'];
+    }
+    if(localStorage['end']){
+        end.value = localStorage['end'];
+    }
+    if(localStorage['selectedYear']){
+        year.value = localStorage['selectedYear'];
+    }
+    if(localStorage['BaoCao']){
+        bc.value = localStorage['BaoCao'];
+    }
+    start.onchange = function(){
+        localStorage['start'] = this.value;
+    }
+    
+    end.onchange = function(){
+        localStorage['end'] = this.value;
+    }
+    year.onchange = function(){
+        localStorage['selectedYear'] = this.value;
+    }
+    bc.onchange = function(){
+        localStorage['BaoCao'] = this.value;
+    } 
+});
+$(document).ready(function(){
+   if(localStorage['BaoCao'] == 1){
+      //  $("#thuoc").css("visibility","hidden");
+        $("#doanhthu").removeAttr('style');
+         $("#thuoc").remove();
+   }else if(localStorage['BaoCao'] == 2){
+       $("#thuoc").removeAttr('style');
+       $("#doanhthu").css("visibility","hidden");
+   }
+})
+</script>
+@using (Html.BeginForm("Index","BaoCao",FormMethod.Get)){
+    <div class="row">  
+        <div class="col-lg-12 text-center">  
+            <div class="row" style="margin-left:10px;">
+               <p style="margin-top:5px;"><b>Loại báo cáo:&nbsp;</b></p> 
+               <select id="BaoCao" class="form-control" style="width:150px" required="">
+                   <option selected>Loại Báo cáo</option>
+                   <option value="1" >Doanh thu</option>
+                   <option value="2">Số Lượng thuốc</option>
+               </select>
+               <p style="margin-top:5px;"><b>Từ tháng:&nbsp;</b></p><Select name="StartMonth" id="start" required="" class="form-control" style=width:150px>
+                    <option>--Tháng--</option>
+                    @foreach (var item in ViewData["startMonth"] as List<int>){
+                        <option value="@item">@item</option>
+                    }
+                </Select> &nbsp; &nbsp;
+                <p style="margin-top:5px;"><b>Đến tháng:&nbsp;</b></p>
+                <Select name="EndMonth" required="" class="form-control" style=width:150px id="end">
+                    <option>--Tháng--</option>
+                    @foreach (var item in ViewData["endMonth"] as List<int>){
+                        <option value="@item">@item</option>
+                    }
+                </Select> &nbsp; &nbsp;
+                <p style="margin-top:5px;"><b>Năm:&nbsp;</b></p>
+                <Select name="year" required="" class="form-control" style=width:150px id="selectedYear">
+                    <option>--Năm--</option>
+                    @foreach (var item in ViewData["year"] as List<int>){
+                        <option value="@item">@item</option>
+                    }
+                </Select>
+                &nbsp; &nbsp;<button class="btn btn-primary form-control" style=width:100px type="submit">Thống kê</button>    
+            </div>  
+        </div>  
+    </div>  
+}
+<div class="card" id="thuoc" style="visibility:hidden">
+    <div class="card-header">Số lượng thuốc đã bán</div>
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Tên thuốc
+                    </th>
+                    <th>
+                        Số lượng đã bán
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.BaoCaos) {
+                        <tr>
+                            <td>
+                                @item.TenThuoc
+                            </td>
+                            <td>
+                                @item.SLTDaban
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+@{
+    var disNext= !Model.BaoCaos.HasNext ? " visibility: hidden" : "";   
+    var disPre= !Model.BaoCaos.HasPrevious ? " visibility: hidden" : "";   
+}
+
+        <ul class="pagination justify-content-end" style="margin:20px 0">
+            <li class="page-item">
+                <a asp-action="Index"  class="page-link" style="@disPre"
+                asp-route-pageIndex="@( Model.BaoCaos.PageIndex - 1 )"
+                asp-route-StartMonth="@ViewData["stMonth"]" 
+                asp-route-EndMonth="@ViewData["eMonth"]"
+                asp-route-year="@ViewData["y"]"
+            > Previous </a>
+            </li>           
+        @{     
+            for(int i=1; i <= Model.BaoCaos.TotalPages; i++)
+            {
+                //Nếu số tổng số trang >=8 thì sẽ hiện ... và sẽ hiện trang : i-2 , i-1 , i , i+1 ,i+2
+                if(Model.BaoCaos.TotalPages>=8 && @i>=Model.BaoCaos.PageIndex-2 && @i<=Model.BaoCaos.PageIndex+2)
+                {
+                    if(@i==Model.BaoCaos.PageIndex-2 && @i>1)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                    if(@i==Model.BaoCaos.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else 
+                    {
+                        <li class="page-item ">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-StartMonth="@ViewData["stMonth"]" 
+                            asp-route-EndMonth="@ViewData["eMonth"]"
+                            asp-route-year="@ViewData["y"]"
+                            > @i </a>
+                        </li>
+                    }
+                    if(@i==Model.BaoCaos.PageIndex+2 && @i<Model.BaoCaos.TotalPages)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                }
+                else if( Model.BaoCaos.TotalPages < 8 ) //Nếu số tổng số trang <8 thì sẽ hiện hết các trang
+                {
+                    if(@i==Model.BaoCaos.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-StartMonth="@ViewData["stMonth"]" 
+                            asp-route-EndMonth="@ViewData["eMonth"]"
+                            asp-route-year="@ViewData["y"]"> @i </a>
+                        </li>
+                    }
+                }         
+			}
+		}
+            <li class="page-item">
+                    <a asp-action="Index"  class="page-link" style="@disNext"
+                    asp-route-pageIndex="@( Model.BaoCaos.PageIndex + 1 )"
+                    asp-route-StartMonth="@ViewData["stMonth"]" 
+                    asp-route-EndMonth="@ViewData["eMonth"]"
+                    asp-route-year="@ViewData["y"]"
+                    > Next </a>
+            </li>  
+        </ul>
+    </div>
+</div>
+<div class="card" id="doanhthu" style="visibility:hidden">
+    <div class="card-header">Tổng doanh thu</div>
+    <div class="card-body">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Thời Gian
+                    </th>
+                    <th>
+                        Tổng doanh thu
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.BaoCaoDoanhThus) {
+                    <tr>
+                        <td>
+                            @{
+                                var thoigian = String.Format("{0:dd-MM-yyyy}",@item.ThoiGian);
+                            }
+                            @thoigian
+                        </td>
+                         <td>
+                            @item.DoanhThu &nbsp VND
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+@{
+    var disNexts= !Model.BaoCaoDoanhThus.HasNext ? " visibility: hidden" : "";   
+    var disPres= !Model.BaoCaoDoanhThus.HasPrevious ? " visibility: hidden" : "";   
+}
+
+        <ul class="pagination justify-content-end" style="margin:20px 0">
+            <li class="page-item">
+                <a asp-action="Index"  class="page-link" style="@disPres"
+                asp-route-pageIndex="@( Model.BaoCaoDoanhThus.PageIndex - 1 )"
+                asp-route-StartMonth="@ViewData["stMonth"]" 
+                asp-route-EndMonth="@ViewData["eMonth"]"
+                asp-route-year="@ViewData["y"]"
+            > Previous </a>
+            </li>           
+        @{     
+            for(int i=1; i <= Model.BaoCaoDoanhThus.TotalPages; i++)
+            {
+                //Nếu số tổng số trang >=8 thì sẽ hiện ... và sẽ hiện trang : i-2 , i-1 , i , i+1 ,i+2
+                if(Model.BaoCaoDoanhThus.TotalPages>=8 && @i>=Model.BaoCaoDoanhThus.PageIndex-2 && @i<=Model.BaoCaoDoanhThus.PageIndex+2)
+                {
+                    if(@i==Model.BaoCaoDoanhThus.PageIndex-2 && @i>1)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                    if(@i==Model.BaoCaoDoanhThus.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else 
+                    {
+                        <li class="page-item ">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-StartMonth="@ViewData["stMonth"]" 
+                            asp-route-EndMonth="@ViewData["eMonth"]"
+                            asp-route-year="@ViewData["y"]"
+                            > @i </a>
+                        </li>
+                    }
+                    if(@i==Model.BaoCaoDoanhThus.PageIndex+2 && @i<Model.BaoCaoDoanhThus.TotalPages)
+                    {
+                        <li class="page-item"><a class="page-link">...</a></li>
+                    }
+                }
+                else if( Model.BaoCaoDoanhThus.TotalPages < 8 ) //Nếu số tổng số trang <8 thì sẽ hiện hết các trang
+                {
+                    if(@i==Model.BaoCaoDoanhThus.PageIndex)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link "> @i </a>
+                        </li>   
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link"
+                            asp-action="Index"
+                            asp-route-pageIndex="@i"
+                            asp-route-StartMonth="@ViewData["stMonth"]" 
+                            asp-route-EndMonth="@ViewData["eMonth"]"
+                            asp-route-year="@ViewData["y"]"
+                            > @i </a>
+                        </li>
+                    }
+                }         
+			}
+		}
+            <li class="page-item">
+                    <a asp-action="Index"  class="page-link" style="@disNexts"
+                    asp-route-pageIndex="@( Model.BaoCaoDoanhThus.PageIndex + 1 )"
+                    asp-route-StartMonth="@ViewData["stMonth"]" 
+                    asp-route-EndMonth="@ViewData["eMonth"]"
+                    asp-route-year="@ViewData["y"]"
+                    > Next </a>
+            </li>  
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
