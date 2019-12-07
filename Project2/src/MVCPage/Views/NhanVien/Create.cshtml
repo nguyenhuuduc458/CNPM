@@ -14,7 +14,9 @@
                 @{
                     foreach(var m in ViewData["MaVaiTro"] as IEnumerable<ApplicationCore.DTOs.SaveVaiTroDTO>)
                     {
-                        <option value="@m.MaVaiTro" selected>@m.TenVaiTro</option>;
+                        if(@m.MaVaiTro!=1){
+                            <option value="@m.MaVaiTro" selected>@m.TenVaiTro</option>;
+                        }
                     }
                 }
                 </select>

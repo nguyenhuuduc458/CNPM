@@ -6,9 +6,17 @@
 <h5>Danh sách bệnh nhân</h5>
 <hr />
 @{
-    var Hidden = @Context.Session.GetString("Role") != "3" ? "Visibility: hidden" : "";
+    var Hidden = @Context.Session.GetString("Role") != "3" ? "1" : "";
+    var hid = Hidden == "1" ? "visibility: hidden" : "";
 }
-    <div class="row" style="margin-top:5px;margin-left:2px; @Hidden">
+<script>
+    $(document).ready(function(){
+       if(@Hidden == "1"){
+           $('#btnThem').remove();
+       }
+    });
+</script>
+    <div id="btnThem" class="row" style="margin-top:5px;margin-left:2px; @hid">
         <a class="btn btn-outline-info" asp-action="Create">Thêm mới</a>
     </div>
 <form method="get">

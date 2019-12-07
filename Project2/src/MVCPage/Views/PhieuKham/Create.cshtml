@@ -7,6 +7,9 @@ $(document).ready(function(){
    $('select').change(function(){
        $('#TrieuChung').val( $("#ChuanDoan").val());
    });
+   $('select#ChuanDoan')
+   .attr('title','Chọn loại bệnh')
+   .css('width','100%');
 });
 </script>
 <div class="row">
@@ -32,7 +35,7 @@ $(document).ready(function(){
             </div>
             <div class="form-group">
                 Triệu chứng <br />
-                <select id="ChuanDoan" class="selectpicker" multiple data-live-search="true" placeholder="Vui lòng chọn bệnh" required="">
+                <select id="ChuanDoan" class="selectpicker form-control" multiple data-live-search="true" required="">
                     @foreach (var item in Model.listTenBenh){
                       <option value="@item.TenBenh">@item.TenBenh</option> 
                     }
@@ -46,14 +49,14 @@ $(document).ready(function(){
                 <span asp-validation-for="PhieuKhams.NgayKham" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type = "submit" value="Create" class="btn btn-primary" />
+                <input type = "submit" value="Tạo" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Trở lại trang trước</a>
 </div>
 
 

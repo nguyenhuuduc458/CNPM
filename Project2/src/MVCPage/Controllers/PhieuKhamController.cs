@@ -75,17 +75,16 @@ namespace MVCPage.Controllers {
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role") == "2")
             {
                 PhieuKhamEditVM vm = _serviceView.GetViewEditPhieuKham(id);
-                ViewData["TrieuChung"] = vm.PhieuKhamEdit.TrieuChung;
+                ViewData["TrieuChung"] = vm.PhieuKhamEdit.TrieuChung.Split(",").ToList();
                 return View(vm);
             }else{
                 return RedirectToAction("Index", "Account");
-            }
-          
+            }          
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int Id,PhieuKhamEditVM vm){
+        public IActionResult Edit(int Id,string TrieuChung,PhieuKhamEditVM vm){
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role") == "2")
             {
                 if (Id != vm.PhieuKhamEdit.Id)
@@ -97,7 +96,7 @@ namespace MVCPage.Controllers {
                     MaPhieuKham = vm.PhieuKhamEdit.Id,
                     MaNhanVien = vm.PhieuKhamEdit.MaNhanVien,
                     MaBenhNhan = vm.PhieuKhamEdit.MaBenhNhan,
-                    TrieuChung = vm.PhieuKhamEdit.TrieuChung,
+                    TrieuChung = TrieuChung,
                     NgayKham = Convert.ToDateTime(vm.PhieuKhamEdit.NgayKham),
                     TrangThai = "Chưa kê toa"
                 };

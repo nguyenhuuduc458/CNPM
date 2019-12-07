@@ -56,14 +56,13 @@ namespace ApplicationCore.Services
 
         public IEnumerable<PhieuKhamMD> GetPhieuKhams(string searchString, int MaNhanVien)
         {
-            Expression<Func<PhieuKham, bool>> predicate = m => true;
-            //search
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                predicate = m => m.TrieuChung.ToLower().Contains(searchString.ToLower());
+            Expression<Func<BenhNhan, bool>> predicate = b => true;
+           
+            if(!String.IsNullOrEmpty(searchString)){
+                predicate = b => b.HoTen.ToLower().Contains(searchString.ToLower());
             }
-            var phieuKham = _unitOfWork.PhieuKhams.Find(predicate);
-            var tblPhieuKham = _unitOfWork.PhieuKhams.GetTablePhieuKham(phieuKham,MaNhanVien);
+            var benhnhan = _unitOfWork.BenhNhans.Find(predicate);
+            var tblPhieuKham = _unitOfWork.PhieuKhams.GetTablePhieuKham(benhnhan,MaNhanVien);
             return tblPhieuKham.ToList();
         }
     }

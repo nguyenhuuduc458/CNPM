@@ -57,12 +57,12 @@ namespace Infrastructure.Persistence
             return tableDoanhThu;
         }
 
-        public IEnumerable<PhieuKhamMD> GetTablePhieuKham(IEnumerable<PhieuKham> phieukham, int MaNhanVien)
+        public IEnumerable<PhieuKhamMD> GetTablePhieuKham(IEnumerable<BenhNhan> benhNhans, int MaNhanVien)
         {
-            var tblPhieuKham = from pk in phieukham
+           var tblPhieuKham = from pk in QuanLyPhongMach.PhieuKhams
                                join nv in QuanLyPhongMach.NhanViens
                                on pk.MaNhanVien equals nv.MaNhanVien
-                               join bn in QuanLyPhongMach.BenhNhans
+                               join bn in benhNhans
                                on pk.MaBenhNhan equals bn.MaBenhNhan
                                where pk.MaNhanVien == MaNhanVien
                                select new PhieuKhamMD
@@ -72,7 +72,7 @@ namespace Infrastructure.Persistence
                                    TenBenhNhan = bn.HoTen,
                                    ChuanDoan = pk.TrieuChung,
                                    NgayKham = pk.NgayKham.Value,
-                                   TrangThai = pk.TrangThai
+                                    TrangThai = pk.TrangThai
                                };
             // var table = phieukham.Join(QuanLyPhongMach.NhanViens,
             //                 pk => pk.MaNhanVien,
