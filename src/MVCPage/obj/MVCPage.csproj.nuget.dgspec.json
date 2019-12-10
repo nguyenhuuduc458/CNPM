@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCPage\\MVCPage.csproj": {}
+    "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCpage\\MVCPage.csproj": {}
   },
   "projects": {
     "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\ApplicationCore\\ApplicationCore.csproj": {
@@ -160,14 +160,14 @@
         }
       }
     },
-    "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCPage\\MVCPage.csproj": {
+    "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCpage\\MVCPage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCPage\\MVCPage.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCpage\\MVCPage.csproj",
         "projectName": "MVCPage",
-        "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCPage\\MVCPage.csproj",
+        "projectPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCpage\\MVCPage.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCPage\\obj\\",
+        "outputPath": "C:\\Users\\DELL\\Documents\\GitHub\\CNPM\\src\\MVCpage\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"

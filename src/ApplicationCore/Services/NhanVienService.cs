@@ -144,9 +144,9 @@ namespace ApplicationCore.Services
         {
             // mã hóa password trước khi tìm kiếm 
             MD5 md5 = MD5.Create();
-            var hasPassword = GetMd5hash(md5, password);
+            var hashPassword = GetMd5hash(md5, password);
 
-            FindNhanVienSpecification nhanVienSpecification = new FindNhanVienSpecification(username,hasPassword);
+            FindNhanVienSpecification nhanVienSpecification = new FindNhanVienSpecification(username,hashPassword);
             var nhanVien = _unitOfWork.NhanViens.FindSpec(nhanVienSpecification).FirstOrDefault();
             
             string usernamesql;
