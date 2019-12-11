@@ -15,6 +15,7 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.Property(t => t.DonGia)
                    .HasAnnotation("Range", (1, 100))
+                   
                    .IsRequired(true);
 
             builder.Property(t => t.DonVi)

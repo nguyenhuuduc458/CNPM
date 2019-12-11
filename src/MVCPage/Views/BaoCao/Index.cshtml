@@ -9,7 +9,7 @@
 <h5>Báo Cáo thống kê </h5>
 <hr />
 <script>
-document.addEventListener("DOMContentLoaded",function(){
+ document.addEventListener("DOMContentLoaded",function(){
     var start = document.getElementById("start");
     var end = document.getElementById("end");
     var year = document.getElementById("selectedYear");
@@ -49,39 +49,40 @@ $(document).ready(function(){
        $("#thuoc").removeAttr('style');
        $("#doanhthu").css("visibility","hidden");
    }
-})
+});
+
 </script>
 @using (Html.BeginForm("Index","BaoCao",FormMethod.Get)){
     <div class="row">  
         <div class="col-lg-12 text-center">  
             <div class="row" style="margin-left:10px;">
                <p style="margin-top:5px;"><b>Loại báo cáo:&nbsp;</b></p> 
-               <select id="BaoCao" class="form-control" style="width:150px" required="">
-                   <option selected>Loại Báo cáo</option>
+               <select id="BaoCao" class="form-control" style="width:150px" required>
+                   <option selected value="">Loại Báo cáo</option>
                    <option value="1" >Doanh thu</option>
                    <option value="2">Số Lượng thuốc</option>
                </select>
-               <p style="margin-top:5px;"><b>Từ tháng:&nbsp;</b></p><Select name="StartMonth" id="start" required="" class="form-control" style=width:150px>
-                    <option>--Tháng--</option>
+               <p style="margin-top:5px;"><b>Từ tháng:&nbsp;</b></p><Select name="StartMonth" id="start"  class="form-control" style=width:150px required>
+                    <option value="" selected>--Tháng--</option>
                     @foreach (var item in ViewData["startMonth"] as List<int>){
                         <option value="@item">@item</option>
                     }
                 </Select> &nbsp; &nbsp;
                 <p style="margin-top:5px;"><b>Đến tháng:&nbsp;</b></p>
-                <Select name="EndMonth" required="" class="form-control" style=width:150px id="end">
-                    <option>--Tháng--</option>
+                <Select name="EndMonth" class="form-control" style=width:150px id="end" required>
+                    <option value=""  selected>--Tháng--</option>
                     @foreach (var item in ViewData["endMonth"] as List<int>){
                         <option value="@item">@item</option>
                     }
                 </Select> &nbsp; &nbsp;
                 <p style="margin-top:5px;"><b>Năm:&nbsp;</b></p>
-                <Select name="year" required="" class="form-control" style=width:150px id="selectedYear">
-                    <option>--Năm--</option>
+                <Select name="year" class="form-control" style=width:150px id="selectedYear" required>
+                    <option value="" selected>--Năm--</option>
                     @foreach (var item in ViewData["year"] as List<int>){
                         <option value="@item">@item</option>
                     }
                 </Select>
-                &nbsp; &nbsp;<button class="btn btn-primary form-control" style=width:100px type="submit">Thống kê</button>    
+                &nbsp; &nbsp;<button class="btn btn-primary form-control" id="btnThongKe" style=width:100px type="submit">Thống kê</button>    
             </div>  
         </div>  
     </div>  

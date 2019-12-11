@@ -156,7 +156,11 @@ namespace Infrastructure.Persistence.Repositories
                   },
                   new Benh
                   {
-                      TenBenh = "Nhức đầu"
+                      TenBenh = "Viêm khớp"
+                  },
+                    new Benh
+                  {
+                      TenBenh = "Căng cơ"
                   },
                   new Benh
                   {
