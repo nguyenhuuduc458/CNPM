@@ -45,7 +45,7 @@ namespace MVCPage.Services {
         public PhieuKhamIndexVM GetPhieuKhamIndexVM (string searchString, int pageIndex, int MaNhanVien) {
             var PKModel = _service.GetPhieuKhams (searchString, MaNhanVien);
             return new PhieuKhamIndexVM {
-                PhieuKhams = PaginatedList<PhieuKhamMD>.Create (PKModel.OrderByDescending (m => m.TrangThai == "Chưa kê toa").OrderByDescending(m => m.NgayKham), pageIndex, pageSize)
+                PhieuKhams = PaginatedList<PhieuKhamMD>.Create (PKModel.OrderByDescending (m => m.TrangThai == "Chưa kê toa"), pageIndex, pageSize)
             };
         }
         public PhieuKhamEditVM GetViewEditPhieuKham (int id) {

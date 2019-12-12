@@ -4,6 +4,6 @@ using MVCPage.ViewModel;
 
 namespace MVCPage.Services {
     public interface INhanVienServiceView {
-        NhanVienIndexVM GetNhanVienIndexVM (string sortOrder, string searchString, int pageIndex);
+        NhanVienIndexVM GetNhanVienIndexVM (string sortOrder, string searchString,string EmpRole, int pageIndex);
     }
 }

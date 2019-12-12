@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using ApplicationCore.DTOs;
+using ApplicationCore.Entities;
 
 namespace ApplicationCore.Interfaces.IServices
 {
     public interface INhanVienService
     {
         SaveNhanVienDTO GetNhanVien(int id);
-        IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString,int pageIndex, int pageSize, out int count);
+        IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString,string EmpRole,int pageIndex, int pageSize, out int count);
         void Create(SaveNhanVienDTO nhanvien);
         void Delete(int id);
         void Edit(SaveNhanVienDTO nhanvien);
@@ -18,5 +19,6 @@ namespace ApplicationCore.Interfaces.IServices
         List<string> CreateSession(string username, string password);
         void UpdatePassword(string username,string matKhau,string MatKhauMoi);
         bool checkValidPassword(string username,string matKhau);
+        IEnumerable<string> GetVaiTro();
     }
 }

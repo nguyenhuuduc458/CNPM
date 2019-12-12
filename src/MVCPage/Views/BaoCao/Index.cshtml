@@ -62,7 +62,8 @@ $(document).ready(function(){
                    <option value="1" >Doanh thu</option>
                    <option value="2">Số Lượng thuốc</option>
                </select>
-               <p style="margin-top:5px;"><b>Từ tháng:&nbsp;</b></p><Select name="StartMonth" id="start"  class="form-control" style=width:150px required>
+               <p style="margin-top:5px;"><b>Từ tháng:&nbsp;</b></p>
+               <Select name="StartMonth" id="start"  class="form-control" style=width:150px required>
                     <option value="" selected>--Tháng--</option>
                     @foreach (var item in ViewData["startMonth"] as List<int>){
                         <option value="@item">@item</option>

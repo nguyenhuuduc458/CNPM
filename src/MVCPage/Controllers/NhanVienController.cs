@@ -32,7 +32,7 @@ namespace MVCPage.Controllers {
 
         }
         // GET: NhanVien
-        public IActionResult Index(string sortOrder, string CurrentFilter, int pageIndex = 1)
+        public IActionResult Index(string sortOrder, string CurrentFilter,string EmployeeRole, int pageIndex = 1)
         {
             if (HttpContext.Session.GetString("Username") != null && HttpContext.Session.GetString("Role") == "1")
             {
@@ -40,7 +40,8 @@ namespace MVCPage.Controllers {
                 ViewData["DateSortParam"] = sortOrder == "Date" ? "Date_desc" : "Date";
                 ViewData["CurrentFilter"] = CurrentFilter;
                 ViewData["CurrentSort"] = sortOrder;
-                NhanVienIndexVM indexNV = _serviceView.GetNhanVienIndexVM(sortOrder, CurrentFilter, pageIndex);
+                ViewData["Role"] = EmployeeRole;
+                NhanVienIndexVM indexNV = _serviceView.GetNhanVienIndexVM(sortOrder, CurrentFilter, EmployeeRole, pageIndex);
                 return View(indexNV);
             }
             else

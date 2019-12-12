@@ -6,6 +6,7 @@ using ApplicationCore.DTOs;
 using ApplicationCore.Entities;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Interfaces.IServices;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVCPage.ViewModel;
 
 namespace MVCPage.Services {
@@ -16,11 +17,14 @@ namespace MVCPage.Services {
             _service = service;
         }
         
-        public NhanVienIndexVM GetNhanVienIndexVM (string sortOrder, string searchString, int pageIndex) {
+        public NhanVienIndexVM GetNhanVienIndexVM (string sortOrder, string searchString,string EmpRole, int pageIndex) {
             int count;
-            var nhanvien = _service.GetNhanViens(sortOrder, searchString,pageIndex, pageSize, out count);
+            var nhanvien = _service.GetNhanViens(sortOrder, searchString, EmpRole ,pageIndex, pageSize, out count);
+            var vaitro = _service.GetVaiTro();
             //paging
-            return new NhanVienIndexVM {
+            return new NhanVienIndexVM
+            {
+                EmpRole = new SelectList(vaitro),
                 NhanViens = new PaginatedList<SaveNhanVienDTO>(nhanvien, pageIndex, pageSize,count)
             };
         }

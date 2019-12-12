@@ -8,15 +8,25 @@
 <div class="row" style="margin-top:5px;margin-left:2px">
     <a class="btn btn-outline-info" asp-action="Create" asp-controller="NhanVien">Thêm mới</a>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#Role').val($('#RoleNV').val())
+    });
+</script>
 <form method="get">
-    <p>
-        Tìm Tên:
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập họ tên..." />
-            <div class="input-group-append">
-               <input type="submit" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
+    <p class="margin-left:10px">
+        <div class="row margin-left:10px">  
+            <select name="EmployeeRole" id="Role" asp-items="Model.EmpRole" class="form-control" style="width:150px;  margin-left:15px">
+                <option value="">Vai Trò</option>
+            </select>      
+            <div class="input-group mb-3" style="width:40%; margin-left:10px">
+                <input type="hidden" id="RoleNV" value="@ViewData["Role"]" />
+                <input type="text" class="form-control" name="CurrentFilter" style="width:20px;" value="@ViewData["CurrentFilter"]" placeholder="Nhập họ tên..." />
+                <div class="input-group-append">
+                <input type="submit" id="Search" class="btn btn-primary" class="input-group-text" value="Tìm kiếm">
+                </div>
             </div>
-        </div>
+        </div>     
     </p>
 </form>
 

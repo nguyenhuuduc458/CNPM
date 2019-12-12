@@ -75,7 +75,7 @@ namespace Infrastructure.Persistence.Repositories
                 context.VaiTros.AddRange(
                     new VaiTro
                     {
-                        TenVaiTro = "Bác sỹ"
+                        TenVaiTro = "Bác sĩ"
                     },
                     new VaiTro
                     {

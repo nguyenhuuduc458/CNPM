@@ -107,10 +107,10 @@ namespace ApplicationCore.Services
             return _mapper.Map<NhanVien, SaveNhanVienDTO>(nhanvien);
         }
 
-        public IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString, int pageIndex, int pageSize, out int count)
+        public IEnumerable<SaveNhanVienDTO> GetNhanViens(string sortOrder, string searchString,string EmpRole, int pageIndex, int pageSize, out int count)
         {
-            NhanVienSpecification nhanVienFilterPaging = new NhanVienSpecification(searchString, pageIndex, pageSize);
-            NhanVienSpecification nhanVienFilter = new NhanVienSpecification(searchString);
+            NhanVienSpecification nhanVienFilterPaging = new NhanVienSpecification(searchString,EmpRole, pageIndex, pageSize);
+            NhanVienSpecification nhanVienFilter = new NhanVienSpecification(searchString,EmpRole);
              
             var NhanVien = _unitOfWork.NhanViens.FindSpec(nhanVienFilterPaging);
             count = _unitOfWork.NhanViens.Count(nhanVienFilter);
@@ -251,6 +251,12 @@ namespace ApplicationCore.Services
                 }
                 return true;
             }
+        }
+
+        public IEnumerable<string> GetVaiTro()
+        {
+            Expression<Func<VaiTro, bool>> predicate = v => v.MaVaiTro != 1;
+            return _unitOfWork.VaiTros.Find(predicate).Select(s => s.TenVaiTro);
         }
     }
 }
